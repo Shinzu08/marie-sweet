@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marie Sweet — Menu</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #faf6f0; color: #3e2c23; padding: 16px; max-width: 600px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 20px; }
+    h1 { font-size: 28px; color: #8b5e3c; }
+    .table-badge { display: inline-block; background: #8b5e3c; color: white; padding: 6px 14px; border-radius: 20px; font-size: 14px; margin-top: 6px; }
+    .item { background: white; border-radius: 12px; padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .item-info h3 { font-size: 16px; }
+    .item-info p { font-size: 13px; color: #888; }
+    .price { color: #8b5e3c; font-weight: bold; }
+    button { background: #8b5e3c; color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+    button:active { transform: scale(0.96); }
+    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #3e2c23; color: white; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
+    .cart-bar button { background: #d4a574; color: #3e2c23; font-weight: bold; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>☕ Marie Sweet</h1>
+    <div class="table-badge" id="tableBadge">Table —</div>
+  </header>
+
+  <div id="menu"></div>
+
+  <div class="cart-bar hidden" id="cartBar">
+    <span id="cartTotal">0 DA</span>
+    <button onclick="placeOrder()">Order Now</button>
+  </div>
+
+  <script>
+    const MENU = [
+      { id: 1, name: 'Espresso', price: 150, desc: 'Strong & small' },
+      { id: 2, name: 'Cappuccino', price: 250, desc: 'With milk foam' },
+      { id: 3, name: 'Latte', price: 280, desc: 'Smooth & creamy' },
+      { id: 4, name: 'Croissant', price: 120, desc: 'Fresh baked' },
+      { id: 5, name: 'Cheesecake', price: 300, desc: 'Homemade' },
+    ];
+
+    const params = new URLSearchParams(location.search);
+    const TABLE = params.get('table') || '?';
+    document.getElementById('tableBadge').textContent = `Table ${TABLE}`;
+
+    let cart = {};
+
+    function renderMenu() {
+      document.getElementById('menu').innerHTML = MENU.map(item => `
+        <div class="item">
+          <div class="item-info">
+            <h3>${item.name}</h3>
+            <p>${item.desc}</p>
+            <span class="price">${item.price} DA</span>
+          </div>
+          <button onclick="addToCart(${item.id})">+ Add</button>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      updateCart();
+    }
+
+    function updateCart() {
+      const count = Object.values(cart).reduce((a, b) => a + b, 0);
+      let total = 0;
+      for (const id in cart) {
+        const item = MENU.find(m => m.id == id);
+        total += item.price * cart[id];
+      }
+      document.getElementById('cartBar').classList.toggle('hidden', count === 0);
+      document.getElementById('cartTotal').textContent = `${count} items — ${total} DA`;
+    }
+
+    async function placeOrder() {
+      const items = Object.keys(cart).map(id => {
+        const item = MENU.find(m => m.id == id);
+        return { name: item.name, price: item.price, qty: cart[id] };
+      });
+      const total = items.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+      try {
+        const res = await fetch('/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ table: TABLE, items, total })
+        });
+        if (!res.ok) throw new Error();
+        alert('✅ Order sent! We will bring it to your table.');
+        cart = {};
+        updateCart();
+      } catch {
+        alert('❌ Could not send order. Please call the waiter.');
+      }
+    }
+
+    renderMenu();
+  </script>
+</body>
+</html>
