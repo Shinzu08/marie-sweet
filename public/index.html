@@ -1,32 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marie Sweet — Menu</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, sans-serif; background: #faf6f0; color: #3e2c23; padding: 16px; max-width: 600px; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 20px; }
-    h1 { font-size: 28px; color: #8b5e3c; }
-    .table-badge { display: inline-block; background: #8b5e3c; color: white; padding: 6px 14px; border-radius: 20px; font-size: 14px; margin-top: 6px; }
-    .item { background: white; border-radius: 12px; padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
-    .item-info h3 { font-size: 16px; }
-    .item-info p { font-size: 13px; color: #888; }
-    .price { color: #8b5e3c; font-weight: bold; }
-    button { background: #8b5e3c; color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 14px; cursor: pointer; }
-    button:active { transform: scale(0.96); }
-    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #3e2c23; color: white; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
-    .cart-bar button { background: #d4a574; color: #3e2c23; font-weight: bold; }
-    .hidden { display: none; }
+    body { font-family: system-ui, sans-serif; background: #fff0f5; color: #4a3b3b; padding: 16px; padding-bottom: 100px; max-width: 600px; margin: 0 auto; }
+    
+    header { text-align: center; margin-bottom: 15px; }
+    h1 { font-size: 32px; color: #d81b60; font-weight: 800; }
+    .table-badge { display: inline-block; background: #d81b60; color: white; padding: 6px 14px; border-radius: 20px; font-size: 14px; margin-top: 6px; font-weight: bold; }
+
+    /* Category Tabs */
+    .categories { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 5px; scrollbar-width: none; }
+    .categories::-webkit-scrollbar { display: none; }
+    .cat-btn { background: #f8bbd0; color: #880e4f; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: bold; cursor: pointer; white-space: nowrap; }
+    .cat-btn.active { background: #d81b60; color: white; }
+
+    /* Menu Items */
+    .item { background: white; border-radius: 12px; padding: 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(216,27,96,0.08); }
+    .item-info h3 { font-size: 16px; margin-bottom: 4px; }
+    .price { color: #d81b60; font-weight: bold; font-size: 15px; }
+    
+    /* Buttons */
+    .add-btn { background: #d81b60; color: white; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .minus-btn { background: #f8bbd0; color: #880e4f; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    
+    /* Bottom Bar */
+    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #4a3b3b; color: white; padding: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 12px rgba(0,0,0,0.15); }
+    .cart-bar span { font-weight: bold; font-size: 15px; }
+    .cart-bar button { background: #d81b60; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; }
+    .cart-bar button:active { transform: scale(0.95); }
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
   <header>
-    <h1>☕ Marie Sweet</h1>
+    <h1>🌸 Marie Sweet</h1>
     <div class="table-badge" id="tableBadge">Table —</div>
   </header>
 
+  <div class="categories" id="categories"></div>
   <div id="menu"></div>
 
   <div class="cart-bar hidden" id="cartBar">
@@ -35,36 +50,163 @@
   </div>
 
   <script>
+    // YOUR EXACT MENU FROM THE IMAGES
     const MENU = [
-      { id: 1, name: 'Espresso', price: 150, desc: 'Strong & small' },
-      { id: 2, name: 'Cappuccino', price: 250, desc: 'With milk foam' },
-      { id: 3, name: 'Latte', price: 280, desc: 'Smooth & creamy' },
-      { id: 4, name: 'Croissant', price: 120, desc: 'Fresh baked' },
-      { id: 5, name: 'creep', price: 300, desc: 'Homemade' },
+      // Boissons Chaudes
+      { id: 1, name: 'Chocolat Chaud Nutella', price: 350, cat: 'Boissons Chaudes' },
+      { id: 2, name: 'Capuccino Nutella', price: 300, cat: 'Boissons Chaudes' },
+      { id: 3, name: 'Capuccino Marie', price: 350, cat: 'Boissons Chaudes' },
+      { id: 4, name: 'Café Crème', price: 200, cat: 'Boissons Chaudes' },
+      { id: 5, name: 'Café Capsules', price: 100, cat: 'Boissons Chaudes' },
+      
+      // Jus
+      { id: 6, name: 'Jus de Banane', price: 350, cat: 'Jus' },
+      { id: 7, name: 'Jus d\'Ananas', price: 350, cat: 'Jus' },
+      { id: 8, name: 'Jus de Citron', price: 350, cat: 'Jus' },
+      { id: 9, name: 'Jus d\'Orange', price: 350, cat: 'Jus' },
+      
+      // Cocktails
+      { id: 10, name: 'Cocktail Étoile Rose', price: 350, cat: 'Cocktails' },
+      { id: 11, name: 'Cocktail Nature', price: 350, cat: 'Cocktails' },
+      { id: 12, name: 'Cocktail Brasilia', price: 450, cat: 'Cocktails' },
+      { id: 13, name: 'Cocktail Jardin d\'Été', price: 400, cat: 'Cocktails' },
+
+      // Mocktails
+      { id: 14, name: 'Pina Colada', price: 350, cat: 'Mocktails' },
+      { id: 15, name: 'Florida', price: 350, cat: 'Mocktails' },
+      { id: 16, name: 'Bora Bora', price: 450, cat: 'Mocktails' },
+      { id: 17, name: 'Bleu Curaçao', price: 400, cat: 'Mocktails' },
+
+      // Milkshakes
+      { id: 18, name: 'Milkshake Banane', price: 350, cat: 'Milkshakes' },
+      { id: 19, name: 'Milkshake Fraise', price: 350, cat: 'Milkshakes' },
+      { id: 20, name: 'Milkshake Nutella', price: 400, cat: 'Milkshakes' },
+      { id: 21, name: 'Milkshake Oreo', price: 450, cat: 'Milkshakes' },
+      { id: 22, name: 'Milkshake Kinder Bueno', price: 450, cat: 'Milkshakes' },
+
+      // Iced Drinks
+      { id: 23, name: 'Iced Strawberry', price: 350, cat: 'Iced Drinks' },
+      { id: 24, name: 'Iced Coffee', price: 300, cat: 'Iced Drinks' },
+      { id: 25, name: 'Iced Tea', price: 300, cat: 'Iced Drinks' },
+      { id: 26, name: 'Pink Lady', price: 400, cat: 'Iced Drinks' },
+
+      // Mojitos
+      { id: 27, name: 'Mojito Classique Simple', price: 350, cat: 'Mojitos' },
+      { id: 28, name: 'Mojito Classique (Gazeuse)', price: 350, cat: 'Mojitos' },
+      { id: 29, name: 'Mojito Bleu', price: 350, cat: 'Mojitos' },
+      { id: 30, name: 'Mojito Pêche', price: 400, cat: 'Mojitos' },
+      { id: 31, name: 'Mojito Fruits de Bois', price: 400, cat: 'Mojitos' },
+      { id: 32, name: 'Mojito Nature', price: 400, cat: 'Mojitos' },
+
+      // Les Crêpes
+      { id: 33, name: 'Crêpe Simple', price: 250, cat: 'Crêpes' },
+      { id: 34, name: 'Crêpe Fruits au Choix', price: 350, cat: 'Crêpes' },
+      { id: 35, name: 'Crêpe Roulé Fruits au Choix', price: 350, cat: 'Crêpes' },
+      { id: 36, name: 'Crêpe Spaghetti', price: 400, cat: 'Crêpes' },
+      { id: 37, name: 'Crêpe Mix Fruits', price: 450, cat: 'Crêpes' },
+      { id: 38, name: 'Crêpe Dubai', price: 600, cat: 'Crêpes' },
+      { id: 39, name: 'Crêpe Marie', price: 600, cat: 'Crêpes' },
+
+      // Les Pancakes
+      { id: 40, name: 'Pancake Simple', price: 250, cat: 'Pancakes' },
+      { id: 41, name: 'Pancake Fruits au Choix', price: 350, cat: 'Pancakes' },
+      { id: 42, name: 'Pancake Mix Fruits', price: 450, cat: 'Pancakes' },
+      { id: 43, name: 'Pancake Marie', price: 600, cat: 'Pancakes' },
+
+      // Les Gaufres
+      { id: 44, name: 'Gaufre Simple', price: 250, cat: 'Gaufres' },
+      { id: 45, name: 'Gaufre Fruits au Choix', price: 350, cat: 'Gaufres' },
+      { id: 46, name: 'Gaufre Mix Fruits', price: 450, cat: 'Gaufres' },
+      { id: 47, name: 'Gaufre Marie', price: 600, cat: 'Gaufres' },
+
+      // Desser
+      { id: 48, name: 'Salad Fruits', price: 400, cat: 'Desserts' },
+      { id: 49, name: 'Bateau Fruits', price: 600, cat: 'Desserts' },
+      { id: 50, name: 'Bateau Fruits Maxi', price: 700, cat: 'Desserts' },
+
+      // Snacks
+      { id: 51, name: 'Snack Yummy', price: 450, cat: 'Snacks' },
+      { id: 52, name: 'Snack Bakiruko', price: 550, cat: 'Snacks' },
+      { id: 53, name: 'Snack Sugar Rush', price: 700, cat: 'Snacks' },
+
+      // Cheesecake
+      { id: 54, name: 'Cheesecake Nutella', price: 450, cat: 'Cheesecakes' },
+      { id: 55, name: 'Cheesecake Lotus', price: 500, cat: 'Cheesecakes' },
+      { id: 56, name: 'Cheesecake Fruits de Bois', price: 450, cat: 'Cheesecakes' },
+      { id: 57, name: 'Cheesecake Bueno', price: 500, cat: 'Cheesecakes' },
+      { id: 58, name: 'Cake Dubai', price: 700, cat: 'Cheesecakes' },
+
+      // Tiramissu
+      { id: 59, name: 'Tiramissu Classique', price: 350, cat: 'Tiramissu' },
+      { id: 60, name: 'Tiramissu Nutella', price: 450, cat: 'Tiramissu' },
+      { id: 61, name: 'Tiramissu Marie', price: 500, cat: 'Tiramissu' },
+
+      // Cascada
+      { id: 62, name: 'Cascada Simple', price: 400, cat: 'Cascada' },
+      { id: 63, name: 'Cascada Royale', price: 450, cat: 'Cascada' },
+      { id: 64, name: 'Cascada Dubai', price: 550, cat: 'Cascada' },
+      { id: 65, name: 'Cascada Marie', price: 700, cat: 'Cascada' },
+      
+      // Les Boissons
+      { id: 66, name: 'Canettes de Coca-Cola', price: 150, cat: 'Les Boissons' },
+      { id: 67, name: 'L\'eau Petite Bouteille', price: 30, cat: 'Les Boissons' },
+      { id: 68, name: 'L\'eau Grande Bouteille', price: 50, cat: 'Les Boissons' }
     ];
+
+    const CATEGORIES = ['All', 'Boissons Chaudes', 'Jus', 'Cocktails', 'Mocktails', 'Milkshakes', 'Iced Drinks', 'Mojitos', 'Crêpes', 'Pancakes', 'Gaufres', 'Desserts', 'Snacks', 'Cheesecakes', 'Tiramissu', 'Cascada', 'Les Boissons'];
 
     const params = new URLSearchParams(location.search);
     const TABLE = params.get('table') || '?';
     document.getElementById('tableBadge').textContent = `Table ${TABLE}`;
 
     let cart = {};
+    let currentCategory = 'All';
+
+    // Render Category Tabs
+    document.getElementById('categories').innerHTML = CATEGORIES.map(cat => `
+      <button class="cat-btn ${cat === 'All' ? 'active' : ''}" onclick="filterMenu('${cat}', this)">${cat}</button>
+    `).join('');
+
+    function filterMenu(category, btn) {
+      currentCategory = category;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderMenu();
+    }
 
     function renderMenu() {
-      document.getElementById('menu').innerHTML = MENU.map(item => `
+      const filteredItems = MENU.filter(item => currentCategory === 'All' || item.cat === currentCategory);
+      
+      document.getElementById('menu').innerHTML = filteredItems.map(item => {
+        const qty = cart[item.id] || 0;
+        return `
         <div class="item">
           <div class="item-info">
             <h3>${item.name}</h3>
-            <p>${item.desc}</p>
             <span class="price">${item.price} DA</span>
           </div>
-          <button onclick="addToCart(${item.id})">+ Add</button>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            ${qty > 0 ? `<button class="minus-btn" onclick="removeFromCart(${item.id})">−</button>` : ''}
+            <span style="font-weight: bold; font-size: 16px; min-width: 20px; text-align: center;">${qty > 0 ? qty : ''}</span>
+            <button class="add-btn" onclick="addToCart(${item.id})">+</button>
+          </div>
         </div>
-      `).join('');
+      `}).join('');
     }
 
     function addToCart(id) {
       cart[id] = (cart[id] || 0) + 1;
       updateCart();
+      renderMenu();
+    }
+
+    function removeFromCart(id) {
+      if (cart[id]) {
+        cart[id] -= 1;
+        if (cart[id] === 0) delete cart[id];
+        updateCart();
+        renderMenu();
+      }
     }
 
     function updateCart() {
@@ -85,6 +227,9 @@
       });
       const total = items.reduce((sum, i) => sum + i.price * i.qty, 0);
 
+      const button = document.querySelector('.cart-bar button');
+      button.textContent = "Sending...";
+
       try {
         const res = await fetch('/order', {
           method: 'POST',
@@ -95,8 +240,11 @@
         alert('✅ Order sent! We will bring it to your table.');
         cart = {};
         updateCart();
+        renderMenu();
       } catch {
         alert('❌ Could not send order. Please call the waiter.');
+      } finally {
+        button.textContent = "Order Now";
       }
     }
 
