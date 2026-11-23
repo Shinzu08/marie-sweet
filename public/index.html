@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Menu</title>
+    <title>Pink Menu</title>
     <style>
+        /* Pink Theme Colors */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 20px;
-            background-color: #fafafa;
+            background-color: #fff0f5; /* Very light pink background */
             padding-bottom: 250px; /* Space for the cart at the bottom */
         }
 
@@ -20,16 +21,17 @@
             justify-content: center;
         }
 
-        /* Box for each item */
+        /* Box for each item with a pink shadow */
         .menu-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             background: white;
             padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(255, 105, 180, 0.2); /* Pink shadow */
             width: 220px;
+            border: 1px solid #ffb6c1;
         }
 
         /* Picture styling */
@@ -37,46 +39,75 @@
             width: 200px;
             height: 200px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
 
-        /* Green Add Button */
-        .add-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
+        /* Button Container */
+        .item-buttons {
+            display: flex;
+            gap: 10px;
             width: 100%;
+            justify-content: space-between;
+        }
+
+        /* Pink Add Button */
+        .add-btn {
+            background-color: #ff69b4; /* Hot Pink */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            width: 48%;
             transition: 0.2s;
         }
 
         .add-btn:hover {
-            background-color: #45a049;
+            background-color: #ff1493; /* Deeper Pink */
         }
 
-        /* --- SHOPPING CART STYLES --- */
+        /* Light Pink Cancel Button */
+        .cancel-btn {
+            background-color: #ffb6c1; /* Light Pink */
+            color: #333;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            width: 48%;
+            transition: 0.2s;
+        }
+
+        .cancel-btn:hover {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        /* --- SHOPPING CART STYLES (Pink Theme) --- */
         .cart-container {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background-color: white;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 -4px 15px rgba(255, 105, 180, 0.3); /* Pink shadow */
             padding: 20px;
             max-height: 200px;
-            overflow-y: auto; /* Scroll if cart gets too long */
+            overflow-y: auto;
             box-sizing: border-box;
+            border-top: 3px solid #ff69b4;
         }
 
         .cart-title {
             margin-top: 0;
             font-size: 18px;
-            border-bottom: 2px solid #eee;
+            color: #ff1493;
+            border-bottom: 2px solid #ffb6c1;
             padding-bottom: 10px;
         }
 
@@ -91,13 +122,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ffe4e1;
         }
 
-        /* Red Cancel Button in the Cart */
-        .cancel-btn {
-            background-color: #f44336;
-            color: white;
+        /* Cancel Button inside the Cart */
+        .cart-cancel-btn {
+            background-color: #ffb6c1;
+            color: #333;
             border: none;
             padding: 6px 12px;
             border-radius: 4px;
@@ -105,12 +136,13 @@
             font-weight: bold;
         }
 
-        .cancel-btn:hover {
-            background-color: #da190b;
+        .cart-cancel-btn:hover {
+            background-color: #ff69b4;
+            color: white;
         }
 
         .empty-cart {
-            color: #888;
+            color: #ff69b4;
             font-style: italic;
         }
     </style>
@@ -118,77 +150,115 @@
 <body>
 
     <div class="menu-grid">
+        
         <!-- Item 1 -->
         <div class="menu-item">
             <img src="cappuccino.jpg.PNG" alt="Cappuccino">
-            <button class="add-btn" onclick="addToCart('Cappuccino')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Cappuccino')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 2 -->
         <div class="menu-item">
             <img src="cascada.jpg.PNG" alt="Cascada">
-            <button class="add-btn" onclick="addToCart('Cascada')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Cascada')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 3 -->
         <div class="menu-item">
             <img src="cheesecake.jpg.PNG" alt="Cheesecake">
-            <button class="add-btn" onclick="addToCart('Cheesecake')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Cheesecake')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 4 -->
         <div class="menu-item">
             <img src="cocktail.jpg.png" alt="Cocktail">
-            <button class="add-btn" onclick="addToCart('Cocktail')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Cocktail')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 5 -->
         <div class="menu-item">
             <img src="crepe.jpg.PNG" alt="Crepe">
-            <button class="add-btn" onclick="addToCart('Crepe')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Crepe')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 6 -->
         <div class="menu-item">
             <img src="dessert.jpg.PNG" alt="Dessert">
-            <button class="add-btn" onclick="addToCart('Dessert')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Dessert')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 7 -->
         <div class="menu-item">
             <img src="gaufre.jpg.PNG" alt="Gaufre">
-            <button class="add-btn" onclick="addToCart('Gaufre')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Gaufre')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 8 -->
         <div class="menu-item">
             <img src="iced.jpg.PNG" alt="Iced">
-            <button class="add-btn" onclick="addToCart('Iced')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Iced')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 9 -->
         <div class="menu-item">
             <img src="jus.jpg.PNG" alt="Jus">
-            <button class="add-btn" onclick="addToCart('Jus')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Jus')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 10 -->
         <div class="menu-item">
             <img src="milkshake.jpg.PNG" alt="Milkshake">
-            <button class="add-btn" onclick="addToCart('Milkshake')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Milkshake')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 11 -->
         <div class="menu-item">
             <img src="mocktail.jpg.PNG" alt="Mocktail">
-            <button class="add-btn" onclick="addToCart('Mocktail')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Mocktail')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
 
         <!-- Item 12 -->
         <div class="menu-item">
             <img src="mojito.jpg.PNG" alt="Mojito">
-            <button class="add-btn" onclick="addToCart('Mojito')">Add</button>
+            <div class="item-buttons">
+                <button class="add-btn" onclick="addToCart('Mojito')">Add</button>
+                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            </div>
         </div>
+
     </div>
 
     <!-- THE SHOPPING CART (Fixed at the bottom of the screen) -->
@@ -201,46 +271,46 @@
 
     <!-- JAVASCRIPT FOR THE ORDERING LOGIC -->
     <script>
-        // This array keeps track of what the user clicked
         let order = [];
 
+        // This function handles the green "Add" button
         function addToCart(itemName) {
-            // 1. Add the item to the order list
             order.push(itemName);
-            
-            // 2. Update the screen
             updateCartDisplay();
         }
 
+        // This function handles the red "Cancel" button under the menu item
+        function cancelItem() {
+            if (order.length > 0) {
+                // Removes the last item added to the cart
+                order.pop();
+                updateCartDisplay();
+            }
+        }
+
+        // This function handles the "Cancel" button inside the cart list
         function removeFromCart(index) {
-            // 1. Remove the specific item from the order list
             order.splice(index, 1);
-            
-            // 2. Update the screen
             updateCartDisplay();
         }
 
         function updateCartDisplay() {
             const cartList = document.getElementById('cartList');
-            
-            // Clear the current HTML inside the cart
             cartList.innerHTML = '';
 
-            // If empty, show the empty message
             if (order.length === 0) {
                 cartList.innerHTML = '<li class="empty-cart">Cart is empty. Tap Add to order!</li>';
                 return;
             }
 
-            // If there are items, create a list item for each one
             order.forEach((item, index) => {
                 const li = document.createElement('li');
                 li.className = 'cart-item';
                 
-                // Create the text and the Cancel button
+                // Pink cancel button for the cart
                 li.innerHTML = `
                     <span>${item}</span>
-                    <button class="cancel-btn" onclick="removeFromCart(${index})">Cancel</button>
+                    <button class="cart-cancel-btn" onclick="removeFromCart(${index})">Cancel</button>
                 `;
                 
                 cartList.appendChild(li);
