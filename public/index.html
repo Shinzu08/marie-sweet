@@ -6,32 +6,60 @@
   <title>Marie Sweet — Menu</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, sans-serif; background: #fff0f5; color: #4a3b3b; padding: 16px; padding-bottom: 100px; max-width: 600px; margin: 0 auto; }
     
-    header { text-align: center; margin-bottom: 15px; }
-    h1 { font-size: 32px; color: #d81b60; font-weight: 800; }
-    .table-badge { display: inline-block; background: #d81b60; color: white; padding: 6px 14px; border-radius: 20px; font-size: 14px; margin-top: 6px; font-weight: bold; }
+    /* Beautiful Pink Background */
+    body { 
+      font-family: system-ui, -apple-system, sans-serif; 
+      background-color: #fff0f5; 
+      background-image: radial-gradient(#f8bbd0 1px, transparent 1px);
+      background-size: 20px 20px;
+      color: #4a3b3b; 
+      padding: 16px; 
+      padding-bottom: 100px; 
+      max-width: 600px; 
+      margin: 0 auto; 
+    }
+    
+    header { text-align: center; margin-bottom: 20px; }
+    h1 { font-size: 34px; color: #d81b60; font-weight: 800; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
+    .table-badge { display: inline-block; background: #d81b60; color: white; padding: 8px 18px; border-radius: 20px; font-size: 15px; margin-top: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(216,27,96,0.2); }
 
     /* Category Tabs */
     .categories { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 5px; scrollbar-width: none; }
     .categories::-webkit-scrollbar { display: none; }
-    .cat-btn { background: #f8bbd0; color: #880e4f; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: bold; cursor: pointer; white-space: nowrap; }
-    .cat-btn.active { background: #d81b60; color: white; }
+    .cat-btn { background: white; color: #d81b60; border: 1px solid #f8bbd0; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+    .cat-btn.active { background: #d81b60; color: white; border-color: #d81b60; box-shadow: 0 4px 8px rgba(216,27,96,0.3); }
 
     /* Menu Items */
-    .item { background: white; border-radius: 12px; padding: 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(216,27,96,0.08); }
-    .item-info h3 { font-size: 16px; margin-bottom: 4px; }
-    .price { color: #d81b60; font-weight: bold; font-size: 15px; }
+    .item { background: white; border-radius: 16px; padding: 12px; margin-bottom: 12px; display: flex; align-items: center; box-shadow: 0 4px 12px rgba(216,27,96,0.08); border: 1px solid #fce4ec; }
+    .item-img { width: 75px; height: 75px; object-fit: cover; border-radius: 12px; margin-right: 15px; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .item-info { flex-grow: 1; }
+    .item-info h3 { font-size: 16px; margin-bottom: 4px; font-weight: 700; }
+    .price { color: #d81b60; font-weight: 800; font-size: 15px; }
     
     /* Buttons */
-    .add-btn { background: #d81b60; color: white; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .minus-btn { background: #f8bbd0; color: #880e4f; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .add-btn { background: #d81b60; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(216,27,96,0.3); }
+    .minus-btn { background: #fce4ec; color: #d81b60; border: none; width: 38px; height: 38px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; }
     
     /* Bottom Bar */
-    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #4a3b3b; color: white; padding: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 12px rgba(0,0,0,0.15); }
-    .cart-bar span { font-weight: bold; font-size: 15px; }
-    .cart-bar button { background: #d81b60; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; }
+    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #4a3b3b; color: white; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 15px rgba(0,0,0,0.2); z-index: 100; }
+    .cart-bar span { font-weight: bold; font-size: 16px; }
+    .cart-bar button { background: #d81b60; color: white; border: none; padding: 12px 24px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 8px rgba(216,27,96,0.3); }
     .cart-bar button:active { transform: scale(0.95); }
+
+    /* Confirmation Screen */
+    .confirmation-screen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; backdrop-filter: blur(4px); }
+    .confirm-content { background: white; border-radius: 20px; padding: 25px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .check-icon { font-size: 60px; margin-bottom: 10px; }
+    .confirm-content h2 { color: #d81b60; margin-bottom: 5px; font-size: 26px; }
+    .confirm-content p { color: #888; font-size: 15px; margin-bottom: 20px; }
+    
+    .receipt { background: #fff0f5; border-radius: 12px; padding: 15px; text-align: left; margin-bottom: 20px; max-height: 250px; overflow-y: auto; border: 1px dashed #f8bbd0; }
+    .receipt-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; color: #4a3b3b; }
+    .receipt-total { border-top: 1px dashed #f8bbd0; margin-top: 15px; padding-top: 15px; font-weight: bold; font-size: 18px; display: flex; justify-content: space-between; color: #d81b60; }
+    
+    .close-btn { background: #4a3b3b; color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; }
+    
     .hidden { display: none !important; }
   </style>
 </head>
@@ -44,108 +72,124 @@
   <div class="categories" id="categories"></div>
   <div id="menu"></div>
 
+  <!-- Bottom Cart Bar -->
   <div class="cart-bar hidden" id="cartBar">
     <span id="cartTotal">0 DA</span>
     <button onclick="placeOrder()">Order Now</button>
   </div>
 
+  <!-- Order Confirmation Pop-up -->
+  <div id="confirmationScreen" class="confirmation-screen hidden">
+    <div class="confirm-content">
+      <div class="check-icon">✅</div>
+      <h2>Order Sent!</h2>
+      <p>Your order is being prepared.</p>
+      
+      <div class="receipt" id="receiptDetails">
+        <!-- Order details will go here -->
+      </div>
+      
+      <button onclick="closeConfirmation()" class="close-btn">Back to Menu</button>
+    </div>
+  </div>
+
   <script>
-    // YOUR EXACT MENU FROM THE IMAGES
+    // YOUR EXACT MENU + YOUR IMAGE NAMES
     const MENU = [
       // Boissons Chaudes
-      { id: 1, name: 'Chocolat Chaud Nutella', price: 350, cat: 'Boissons Chaudes' },
-      { id: 2, name: 'Capuccino Nutella', price: 300, cat: 'Boissons Chaudes' },
-      { id: 3, name: 'Capuccino Marie', price: 350, cat: 'Boissons Chaudes' },
-      { id: 4, name: 'Café Crème', price: 200, cat: 'Boissons Chaudes' },
-      { id: 5, name: 'Café Capsules', price: 100, cat: 'Boissons Chaudes' },
+      { id: 1, name: 'Chocolat Chaud Nutella', price: 350, cat: 'Boissons Chaudes', img: 'cappuccino.jpg' },
+      { id: 2, name: 'Capuccino Nutella', price: 300, cat: 'Boissons Chaudes', img: 'cappuccino.jpg' },
+      { id: 3, name: 'Capuccino Marie', price: 350, cat: 'Boissons Chaudes', img: 'cappuccino.jpg' },
+      { id: 4, name: 'Café Crème', price: 200, cat: 'Boissons Chaudes', img: 'cappuccino.jpg' },
+      { id: 5, name: 'Café Capsules', price: 100, cat: 'Boissons Chaudes', img: 'cappuccino.jpg' },
       
       // Jus
-      { id: 6, name: 'Jus de Banane', price: 350, cat: 'Jus' },
-      { id: 7, name: 'Jus d\'Ananas', price: 350, cat: 'Jus' },
-      { id: 8, name: 'Jus de Citron', price: 350, cat: 'Jus' },
-      { id: 9, name: 'Jus d\'Orange', price: 350, cat: 'Jus' },
+      { id: 6, name: 'Jus de Banane', price: 350, cat: 'Jus', img: 'jus.jpg' },
+      { id: 7, name: 'Jus d\'Ananas', price: 350, cat: 'Jus', img: 'jus.jpg' },
+      { id: 8, name: 'Jus de Citron', price: 350, cat: 'Jus', img: 'jus.jpg' },
+      { id: 9, name: 'Jus d\'Orange', price: 350, cat: 'Jus', img: 'jus.jpg' },
       
       // Cocktails
-      { id: 10, name: 'Cocktail Étoile Rose', price: 350, cat: 'Cocktails' },
-      { id: 11, name: 'Cocktail Nature', price: 350, cat: 'Cocktails' },
-      { id: 12, name: 'Cocktail Brasilia', price: 450, cat: 'Cocktails' },
-      { id: 13, name: 'Cocktail Jardin d\'Été', price: 400, cat: 'Cocktails' },
+      { id: 10, name: 'Cocktail Étoile Rose', price: 350, cat: 'Cocktails', img: 'cocktail.jpg' },
+      { id: 11, name: 'Cocktail Nature', price: 350, cat: 'Cocktails', img: 'cocktail.jpg' },
+      { id: 12, name: 'Cocktail Brasilia', price: 450, cat: 'Cocktails', img: 'cocktail.jpg' },
+      { id: 13, name: 'Cocktail Jardin d\'Été', price: 400, cat: 'Cocktails', img: 'cocktail.jpg' },
 
       // Mocktails
-      { id: 14, name: 'Pina Colada', price: 350, cat: 'Mocktails' },
-      { id: 15, name: 'Florida', price: 350, cat: 'Mocktails' },
-      { id: 16, name: 'Bora Bora', price: 450, cat: 'Mocktails' },
-      { id: 17, name: 'Bleu Curaçao', price: 400, cat: 'Mocktails' },
+      { id: 14, name: 'Pina Colada', price: 350, cat: 'Mocktails', img: 'mocktail.jpg' },
+      { id: 15, name: 'Florida', price: 350, cat: 'Mocktails', img: 'mocktail.jpg' },
+      { id: 16, name: 'Bora Bora', price: 450, cat: 'Mocktails', img: 'mocktail.jpg' },
+      { id: 17, name: 'Bleu Curaçao', price: 400, cat: 'Mocktails', img: 'mocktail.jpg' },
 
       // Milkshakes
-      { id: 18, name: 'Milkshake Banane', price: 350, cat: 'Milkshakes' },
-      { id: 19, name: 'Milkshake Fraise', price: 350, cat: 'Milkshakes' },
-      { id: 20, name: 'Milkshake Nutella', price: 400, cat: 'Milkshakes' },
-      { id: 21, name: 'Milkshake Oreo', price: 450, cat: 'Milkshakes' },
-      { id: 22, name: 'Milkshake Kinder Bueno', price: 450, cat: 'Milkshakes' },
+      { id: 18, name: 'Milkshake Banane', price: 350, cat: 'Milkshakes', img: 'milkshake.jpg' },
+      { id: 19, name: 'Milkshake Fraise', price: 350, cat: 'Milkshakes', img: 'milkshake.jpg' },
+      { id: 20, name: 'Milkshake Nutella', price: 400, cat: 'Milkshakes', img: 'milkshake.jpg' },
+      { id: 21, name: 'Milkshake Oreo', price: 450, cat: 'Milkshakes', img: 'milkshake.jpg' },
+      { id: 22, name: 'Milkshake Kinder Bueno', price: 450, cat: 'Milkshakes', img: 'milkshake.jpg' },
 
       // Iced Drinks
-      { id: 23, name: 'Iced Strawberry', price: 350, cat: 'Iced Drinks' },
-      { id: 24, name: 'Iced Coffee', price: 300, cat: 'Iced Drinks' },
-      { id: 25, name: 'Iced Tea', price: 300, cat: 'Iced Drinks' },
-      { id: 26, name: 'Pink Lady', price: 400, cat: 'Iced Drinks' },
+      { id: 23, name: 'Iced Strawberry', price: 350, cat: 'Iced Drinks', img: 'iced.jpg' },
+      { id: 24, name: 'Iced Coffee', price: 300, cat: 'Iced Drinks', img: 'iced.jpg' },
+      { id: 25, name: 'Iced Tea', price: 300, cat: 'Iced Drinks', img: 'iced.jpg' },
+      { id: 26, name: 'Pink Lady', price: 400, cat: 'Iced Drinks', img: 'iced.jpg' },
 
       // Mojitos
-      { id: 27, name: 'Mojito Classique Simple', price: 350, cat: 'Mojitos' },
-      { id: 28, name: 'Mojito Classique (Gazeuse)', price: 350, cat: 'Mojitos' },
-      { id: 29, name: 'Mojito Bleu', price: 350, cat: 'Mojitos' },
-      { id: 30, name: 'Mojito Pêche', price: 400, cat: 'Mojitos' },
-      { id: 31, name: 'Mojito Fruits de Bois', price: 400, cat: 'Mojitos' },
-      { id: 32, name: 'Mojito Nature', price: 400, cat: 'Mojitos' },
+      { id: 27, name: 'Mojito Classique Simple', price: 350, cat: 'Mojitos', img: 'mojito.jpg' },
+      { id: 28, name: 'Mojito Classique (Gazeuse)', price: 350, cat: 'Mojitos', img: 'mojito.jpg' },
+      { id: 29, name: 'Mojito Bleu', price: 350, cat: 'Mojitos', img: 'mojito.jpg' },
+      { id: 30, name: 'Mojito Pêche', price: 400, cat: 'Mojitos', img: 'mojito.jpg' },
+      { id: 31, name: 'Mojito Fruits de Bois', price: 400, cat: 'Mojitos', img: 'mojito.jpg' },
+      { id: 32, name: 'Mojito Nature', price: 400, cat: 'Mojitos', img: 'mojito.jpg' },
 
       // Les Crêpes
-      { id: 33, name: 'Crêpe Simple', price: 250, cat: 'Crêpes' },
-      { id: 34, name: 'Crêpe Fruits au Choix', price: 350, cat: 'Crêpes' },
-      { id: 35, name: 'Crêpe Roulé Fruits au Choix', price: 350, cat: 'Crêpes' },
-      { id: 36, name: 'Crêpe Spaghetti', price: 400, cat: 'Crêpes' },
-      { id: 37, name: 'Crêpe Mix Fruits', price: 450, cat: 'Crêpes' },
-      { id: 38, name: 'Crêpe Dubai', price: 600, cat: 'Crêpes' },
-      { id: 39, name: 'Crêpe Marie', price: 600, cat: 'Crêpes' },
+      { id: 33, name: 'Crêpe Simple', price: 250, cat: 'Crêpes', img: 'crepe.jpg' },
+      { id: 34, name: 'Crêpe Fruits au Choix', price: 350, cat: 'Crêpes', img: 'crepe.jpg' },
+      { id: 35, name: 'Crêpe Roulé Fruits au Choix', price: 350, cat: 'Crêpes', img: 'crepe.jpg' },
+      { id: 36, name: 'Crêpe Spaghetti', price: 400, cat: 'Crêpes', img: 'crepe.jpg' },
+      { id: 37, name: 'Crêpe Mix Fruits', price: 450, cat: 'Crêpes', img: 'crepe.jpg' },
+      { id: 38, name: 'Crêpe Dubai', price: 600, cat: 'Crêpes', img: 'crepe.jpg' },
+      { id: 39, name: 'Crêpe Marie', price: 600, cat: 'Crêpes', img: 'crepe.jpg' },
 
       // Les Pancakes
-      { id: 40, name: 'Pancake Simple', price: 250, cat: 'Pancakes' },
-      { id: 41, name: 'Pancake Fruits au Choix', price: 350, cat: 'Pancakes' },
-      { id: 42, name: 'Pancake Mix Fruits', price: 450, cat: 'Pancakes' },
-      { id: 43, name: 'Pancake Marie', price: 600, cat: 'Pancakes' },
+      { id: 40, name: 'Pancake Simple', price: 250, cat: 'Pancakes', img: 'pancake.jpg' },
+      { id: 41, name: 'Pancake Fruits au Choix', price: 350, cat: 'Pancakes', img: 'pancake.jpg' },
+      { id: 42, name: 'Pancake Mix Fruits', price: 450, cat: 'Pancakes', img: 'pancake.jpg' },
+      { id: 43, name: 'Pancake Marie', price: 600, cat: 'Pancakes', img: 'pancake.jpg' },
 
       // Les Gaufres
-      { id: 44, name: 'Gaufre Simple', price: 250, cat: 'Gaufres' },
-      { id: 45, name: 'Gaufre Fruits au Choix', price: 350, cat: 'Gaufres' },
-      { id: 46, name: 'Gaufre Mix Fruits', price: 450, cat: 'Gaufres' },
-      { id: 47, name: 'Gaufre Marie', price: 600, cat: 'Gaufres' },
+      { id: 44, name: 'Gaufre Simple', price: 250, cat: 'Gaufres', img: 'gaufre.jpg' },
+      { id: 45, name: 'Gaufre Fruits au Choix', price: 350, cat: 'Gaufres', img: 'gaufre.jpg' },
+      { id: 46, name: 'Gaufre Mix Fruits', price: 450, cat: 'Gaufres', img: 'gaufre.jpg' },
+      { id: 47, name: 'Gaufre Marie', price: 600, cat: 'Gaufres', img: 'gaufre.jpg' },
 
       // Desser
-      { id: 48, name: 'Salad Fruits', price: 400, cat: 'Desserts' },
-      { id: 49, name: 'Bateau Fruits', price: 600, cat: 'Desserts' },
-      { id: 50, name: 'Bateau Fruits Maxi', price: 700, cat: 'Desserts' },
+      { id: 48, name: 'Salad Fruits', price: 400, cat: 'Desserts', img: 'dessert.jpg' },
+      { id: 49, name: 'Bateau Fruits', price: 600, cat: 'Desserts', img: 'dessert.jpg' },
+      { id: 50, name: 'Bateau Fruits Maxi', price: 700, cat: 'Desserts', img: 'dessert.jpg' },
 
       // Snacks
-      { id: 51, name: 'Snack Yummy', price: 450, cat: 'Snacks' },
-      { id: 52, name: 'Snack Bakiruko', price: 550, cat: 'Snacks' },
-      { id: 53, name: 'Snack Sugar Rush', price: 700, cat: 'Snacks' },
+      { id: 51, name: 'Snack Yummy', price: 450, cat: 'Snacks', img: 'snack.jpg' },
+      { id: 52, name: 'Snack Bakiruko', price: 550, cat: 'Snacks', img: 'snack.jpg' },
+      { id: 53, name: 'Snack Sugar Rush', price: 700, cat: 'Snacks', img: 'snack.jpg' },
 
       // Cheesecake
-      { id: 54, name: 'Cheesecake Nutella', price: 450, cat: 'Cheesecakes' },
-      { id: 55, name: 'Cheesecake Lotus', price: 500, cat: 'Cheesecakes' },
-      { id: 56, name: 'Cheesecake Fruits de Bois', price: 450, cat: 'Cheesecakes' },
-      { id: 57, name: 'Cheesecake Bueno', price: 500, cat: 'Cheesecakes' },
-      { id: 58, name: 'Cake Dubai', price: 700, cat: 'Cheesecakes' },
+      { id: 54, name: 'Cheesecake Nutella', price: 450, cat: 'Cheesecakes', img: 'cheesecake.jpg' },
+      { id: 55, name: 'Cheesecake Lotus', price: 500, cat: 'Cheesecakes', img: 'cheesecake.jpg' },
+      { id: 56, name: 'Cheesecake Fruits de Bois', price: 450, cat: 'Cheesecakes', img: 'cheesecake.jpg' },
+      { id: 57, name: 'Cheesecake Bueno', price: 500, cat: 'Cheesecakes', img: 'cheesecake.jpg' },
+      { id: 58, name: 'Cake Dubai', price: 700, cat: 'Cheesecakes', img: 'cheesecake.jpg' },
 
       // Tiramissu
-      { id: 59, name: 'Tiramissu Classique', price: 350, cat: 'Tiramissu' },
-      { id: 60, name: 'Tiramissu Nutella', price: 450, cat: 'Tiramissu' },
-      { id: 61, name: 'Tiramissu Marie', price: 500, cat: 'Tiramissu' },
+      { id: 59, name: 'Tiramissu Classique', price: 350, cat: 'Tiramissu', img: 'tiramisu.jpg' },
+      { id: 60, name: 'Tiramissu Nutella', price: 450, cat: 'Tiramissu', img: 'tiramisu.jpg' },
+      { id: 61, name: 'Tiramissu Marie', price: 500, cat: 'Tiramissu', img: 'tiramisu.jpg' },
 
       // Cascada
-      { id: 62, name: 'Cascada Simple', price: 400, cat: 'Cascada' },
-      { id: 63, name: 'Cascada Royale', price: 450, cat: 'Cascada' },
-      { id: 64, name: 'Cascada Dubai', price: 550, cat: 'Cascada' },
-      { id: 65, name: 'Cascada Marie', price: 700, cat: 'Cascada' },
+      { id: 62, name: 'Cascada Simple', price: 400, cat: 'Cascada', img: 'cascada.jpg' },
+      { id: 63, name: 'Cascada Royale', price: 450, cat: 'Cascada', img: 'cascada.jpg' },
+      { id: 64, name: 'Cascada Dubai', price: 550, cat: 'Cascada', img: 'cascada.jpg' },
+      { id: 65, name: 'Cascada Marie', price: 700, cat: 'Cascada', img: 'cascada.jpg' },
       
       // Les Boissons
       { id: 66, name: 'Canettes de Coca-Cola', price: 150, cat: 'Les Boissons' },
@@ -162,7 +206,6 @@
     let cart = {};
     let currentCategory = 'All';
 
-    // Render Category Tabs
     document.getElementById('categories').innerHTML = CATEGORIES.map(cat => `
       <button class="cat-btn ${cat === 'All' ? 'active' : ''}" onclick="filterMenu('${cat}', this)">${cat}</button>
     `).join('');
@@ -181,13 +224,14 @@
         const qty = cart[item.id] || 0;
         return `
         <div class="item">
+          ${item.img ? `<img src="${item.img}" class="item-img" alt="${item.name}" onerror="this.style.display='none'">` : ''}
           <div class="item-info">
             <h3>${item.name}</h3>
             <span class="price">${item.price} DA</span>
           </div>
           <div style="display: flex; align-items: center; gap: 10px;">
             ${qty > 0 ? `<button class="minus-btn" onclick="removeFromCart(${item.id})">−</button>` : ''}
-            <span style="font-weight: bold; font-size: 16px; min-width: 20px; text-align: center;">${qty > 0 ? qty : ''}</span>
+            <span style="font-weight: 800; font-size: 16px; min-width: 20px; text-align: center; color: #d81b60;">${qty > 0 ? qty : ''}</span>
             <button class="add-btn" onclick="addToCart(${item.id})">+</button>
           </div>
         </div>
@@ -229,6 +273,7 @@
 
       const button = document.querySelector('.cart-bar button');
       button.textContent = "Sending...";
+      button.disabled = true;
 
       try {
         const res = await fetch('/order', {
@@ -237,15 +282,30 @@
           body: JSON.stringify({ table: TABLE, items, total })
         });
         if (!res.ok) throw new Error();
-        alert('✅ Order sent! We will bring it to your table.');
+
+        let receiptHTML = `<h3 style="margin-bottom:10px; font-size:18px; color: #d81b60; text-align: center;">Table ${TABLE}</h3>`;
+        items.forEach(i => {
+          receiptHTML += `<div class="receipt-item"><span>${i.qty}x ${i.name}</span> <span>${i.price * i.qty} DA</span></div>`;
+        });
+        receiptHTML += `<div class="receipt-total"><span>Total</span> <span>${total} DA</span></div>`;
+        
+        document.getElementById('receiptDetails').innerHTML = receiptHTML;
+        document.getElementById('confirmationScreen').classList.remove('hidden');
+
         cart = {};
         updateCart();
         renderMenu();
+
       } catch {
         alert('❌ Could not send order. Please call the waiter.');
       } finally {
         button.textContent = "Order Now";
+        button.disabled = false;
       }
+    }
+
+    function closeConfirmation() {
+      document.getElementById('confirmationScreen').classList.add('hidden');
     }
 
     renderMenu();
