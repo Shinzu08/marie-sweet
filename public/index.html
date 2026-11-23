@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marie Sweet Menu</title>
+    <title>Sweet Menu</title>
     <!-- Importing cursive fonts to match your menu images -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Pink Watercolor Background Theme */
+        /* Pink Theme Background */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             background-color: #fff0f5; 
-            /* Adds a soft pink watercolor effect behind everything */
-            background-image: radial-gradient(circle at 50% 0%, #ffd1dc 0%, transparent 50%), 
-                              radial-gradient(circle at 10% 80%, #ffb6c1 0%, transparent 40%),
-                              radial-gradient(circle at 90% 90%, #ffc0cb 0%, transparent 40%);
-            background-attachment: fixed;
             color: #4a3b32;
             padding-bottom: 120px; /* Space for the cart */
         }
@@ -30,10 +25,8 @@
 
         .header h1 {
             color: #ff1493;
-            font-family: 'Poppins', sans-serif;
-            font-size: 36px;
+            font-size: 32px;
             margin: 0 0 10px 0;
-            font-weight: 600;
         }
 
         .table-number {
@@ -47,14 +40,13 @@
             box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
         }
 
-        /* Cursive Category Titles to match the images */
+        /* Cursive Category Titles */
         .category-title {
             font-family: 'Great Vibes', cursive;
             color: #2c1e16;
-            font-size: 42px;
+            font-size: 40px;
             text-align: center;
-            margin: 40px 0 20px 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin: 30px 0 15px 0;
         }
 
         /* Container for the menu items */
@@ -66,28 +58,28 @@
 
         /* Individual Menu Item Card */
         .menu-item {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 15px 20px;
-            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.3);
+            box-shadow: 0 3px 8px rgba(255, 182, 193, 0.3);
             border: 1px solid #ffe4e1;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .item-info {
-            flex: 1;
-            padding-right: 15px;
-            /* Flex layout to put dots between name and price */
             display: flex;
-            flex-wrap: wrap;
+            flex: 1;
             align-items: baseline;
+            min-width: 150px;
         }
 
         .item-name {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: #333;
             margin: 0;
@@ -99,11 +91,11 @@
             border-bottom: 2px dotted #ffb6c1;
             margin: 0 10px;
             position: relative;
-            bottom: 4px;
+            bottom: 3px;
         }
 
         .item-price {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: #ff1493;
             margin: 0;
@@ -120,27 +112,26 @@
             background-color: #ff69b4;
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 2px 5px rgba(255, 105, 180, 0.4);
         }
 
         .add-btn:hover {
             background-color: #ff1493;
         }
 
-        /* The "Cancel" Button under items */
+        /* The "Cancel" Button */
         .cancel-btn {
             background-color: #ffe4e1;
             color: #ff1493;
             border: 1px solid #ffb6c1;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
@@ -158,21 +149,20 @@
             left: 0;
             width: 100%;
             background-color: white;
-            box-shadow: 0 -4px 20px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 -4px 15px rgba(255, 105, 180, 0.2);
             padding: 15px 20px;
-            max-height: 250px;
+            max-height: 200px;
             overflow-y: auto;
             box-sizing: border-box;
-            border-top: 4px solid #ff69b4;
+            border-top: 3px solid #ff69b4;
             z-index: 1000;
         }
 
         .cart-title {
             margin: 0 0 10px 0;
-            font-size: 20px;
+            font-size: 16px;
             color: #ff1493;
             font-weight: bold;
-            font-family: 'Poppins', sans-serif;
         }
 
         .cart-list {
@@ -185,25 +175,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
+            padding: 6px 0;
             border-bottom: 1px solid #ffe4e1;
-            font-size: 15px;
+            font-size: 13px;
         }
 
         .remove-btn {
             background-color: #ffcccc;
             color: #cc0000;
             border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 4px 8px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 12px;
         }
 
         .empty-cart {
             color: #ff69b4;
             font-style: italic;
-            font-size: 14px;
+            font-size: 13px;
         }
     </style>
 </head>
@@ -217,276 +208,107 @@
 
     <div class="menu-container">
 
-        <!-- CATEGORY: LES CREPES -->
+        <!-- LES CREPES -->
         <h2 class="category-title">Les Crêpes</h2>
-        
         <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">CRÊPE SIMPLE</p>
-                <div class="dots"></div>
-                <p class="item-price">250 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Crêpe Simple', '250 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
+            <div class="item-info"><p class="item-name">CRÊPE SIMPLE</p><div class="dots"></div><p class="item-price">250 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Simple', '250 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CRÊPE FRUITS AU CHOIX</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Fruits', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CRÊPE ROULÉ FRUITS AU CHOIX</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Roulé', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CRÊPE SPAGHETTI</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Spaghetti', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CRÊPE MIX FRUITS</p><div class="dots"></div><p class="item-price">450 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Mix Fruits', '450 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CRÊPE DUBAI</p><div class="dots"></div><p class="item-price">600 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Dubai', '600 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CRÊPE MARIE</p><div class="dots"></div><p class="item-price">600 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Marie', '600 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">CRÊPE FRUITS AU CHOIX</p>
-                <div class="dots"></div>
-                <p class="item-price">350 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Crêpe Fruits Au Choix', '350 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">CRÊPE ROULÉ FRUITS AU CHOIX</p>
-                <div class="dots"></div>
-                <p class="item-price">350 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Crêpe Roulé Fruits', '350 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">CRÊPE SPAGHETTI</p>
-                <div class="dots"></div>
-                <p class="item-price">400 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Crêpe Spaghetti', '400 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">CRÊPE MIX FRUITS</p>
-                <div class="dots"></div>
-                <p class="item-price">450 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Crêpe Mix Fruits', '450 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">CRÊPE DUBAI</p>
-                <div class="dots"></div>
-                <p class="item-price">600 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Crêpe Dubai', '600 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">CRÊPE MARIE</p>
-                <div class="dots"></div>
-                <p class="item-price">600 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Crêpe Marie', '600 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <!-- CATEGORY: LES PANCAKES -->
+        <!-- LES PANCAKES -->
         <h2 class="category-title">Les Pancakes</h2>
-
         <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">PANCAKE SIMPLE</p>
-                <div class="dots"></div>
-                <p class="item-price">250 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Pancake Simple', '250 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
+            <div class="item-info"><p class="item-name">PANCAKE SIMPLE</p><div class="dots"></div><p class="item-price">250 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Simple', '250 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">PANCAKE FRUITS AU CHOIX</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Fruits', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">PANCAKE MIX FRUITS</p><div class="dots"></div><p class="item-price">450 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Mix Fruits', '450 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">PANCAKE MARIE</p><div class="dots"></div><p class="item-price">600 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Marie', '600 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">PANCAKE FRUITS AU CHOIX</p>
-                <div class="dots"></div>
-                <p class="item-price">350 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Pancake Fruits Au Choix', '350 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">PANCAKE MIX FRUITS</p>
-                <div class="dots"></div>
-                <p class="item-price">450 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Pancake Mix Fruits', '450 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">PANCAKE MARIE</p>
-                <div class="dots"></div>
-                <p class="item-price">600 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Pancake Marie', '600 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <!-- CATEGORY: LES GAUFRES -->
+        <!-- LES GAUFRES -->
         <h2 class="category-title">Les Gaufres</h2>
-
         <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">GAUFRE SIMPLE</p>
-                <div class="dots"></div>
-                <p class="item-price">250 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Gaufre Simple', '250 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
+            <div class="item-info"><p class="item-name">GAUFRE SIMPLE</p><div class="dots"></div><p class="item-price">250 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Simple', '250 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">GAUFRE FRUITS AU CHOIX</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Fruits', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">GAUFRE MIX FRUITS</p><div class="dots"></div><p class="item-price">450 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Mix Fruits', '450 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">GAUFRE MARIE</p><div class="dots"></div><p class="item-price">600 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Marie', '600 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">GAUFRE FRUITS AU CHOIX</p>
-                <div class="dots"></div>
-                <p class="item-price">350 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Gaufre Fruits Au Choix', '350 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">GAUFRE MIX FRUITS</p>
-                <div class="dots"></div>
-                <p class="item-price">450 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Gaufre Mix Fruits', '450 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">GAUFRE MARIE</p>
-                <div class="dots"></div>
-                <p class="item-price">600 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Gaufre Marie', '600 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <!-- CATEGORY: DESSERTS -->
+        <!-- DESSERT -->
         <h2 class="category-title">Dessert</h2>
-
         <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">SALAD FRUITS</p>
-                <div class="dots"></div>
-                <p class="item-price">400 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Salad Fruits', '400 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
+            <div class="item-info"><p class="item-name">SALAD FRUITS</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Salad Fruits', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">BATEAU FRUITS</p><div class="dots"></div><p class="item-price">600 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bateau Fruits', '600 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">BATEAU FRUITS MAXI</p><div class="dots"></div><p class="item-price">700 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bateau Fruits Maxi', '700 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">BATEAU FRUITS</p>
-                <div class="dots"></div>
-                <p class="item-price">600 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Bateau Fruits', '600 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">BATEAU FRUITS MAXI</p>
-                <div class="dots"></div>
-                <p class="item-price">700 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Bateau Fruits Maxi', '700 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <!-- CATEGORY: SNACKS -->
+        <!-- SNACKS -->
         <h2 class="category-title">Snacks</h2>
-
         <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">SNACK YUMMY</p>
-                <div class="dots"></div>
-                <p class="item-price">450 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Snack Yummy', '450 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
+            <div class="item-info"><p class="item-name">SNACK YUMMY</p><div class="dots"></div><p class="item-price">450 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Snack Yummy', '450 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">SNACK BAKIRUKO</p><div class="dots"></div><p class="item-price">550 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Snack Bakiruko', '550 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">SNACK SUGAR RUSH</p><div class="dots"></div><p class="item-price">700 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Snack Sugar Rush', '700 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">SNACK BAKIRUKO</p>
-                <div class="dots"></div>
-                <p class="item-price">550 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Snack Bakiruko', '550 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-info">
-                <p class="item-name">SNACK SUGAR RUSH</p>
-                <div class="dots"></div>
-                <p class="item-price">700 DA</p>
-            </div>
-            <div class="action-buttons">
-                <button class="add-btn" onclick="addToCart('Snack Sugar Rush', '700 DA')">+ Add</button>
-                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
-            </div>
-        </div>
-
-        <!-- CATEGORY: MOCKTAILS -->
+        <!-- MOCKTAILS -->
         <h2 class="category-title">Mocktails</h2>
-
         <div class="menu-item">
             <div class="item-info"><p class="item-name">PINA COLADA</p><div class="dots"></div><p class="item-price">350 DA</p></div>
             <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pina Colada', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
@@ -504,9 +326,8 @@
             <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bleu Curaçao', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <!-- CATEGORY: MILKSHAKE -->
+        <!-- MILKSHAKE -->
         <h2 class="category-title">Milkshake</h2>
-
         <div class="menu-item">
             <div class="item-info"><p class="item-name">MILKSHAKE BANANE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
             <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Banane', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
@@ -528,9 +349,8 @@
             <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Kinder Bueno', '450 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <!-- CATEGORY: ICED DRINKS -->
+        <!-- ICED DRINKS -->
         <h2 class="category-title">Iced Drinks</h2>
-
         <div class="menu-item">
             <div class="item-info"><p class="item-name">ICED STRAWBERRY</p><div class="dots"></div><p class="item-price">350 DA</p></div>
             <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Strawberry', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
@@ -548,16 +368,15 @@
             <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pink Lady', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <!-- CATEGORY: MOJITO -->
+        <!-- MOJITO -->
         <h2 class="category-title">Mojito</h2>
-
         <div class="menu-item">
             <div class="item-info"><p class="item-name">MOJITO CLASSIQUE SIMPLE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
-            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Classique Simple', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Simple', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
         <div class="menu-item">
             <div class="item-info"><p class="item-name">MOJITO CLASSIQUE (GAZEUSE)</p><div class="dots"></div><p class="item-price">350 DA</p></div>
-            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Classique Gazeuse', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Gazeuse', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
         <div class="menu-item">
             <div class="item-info"><p class="item-name">MOJITO BLEU</p><div class="dots"></div><p class="item-price">350 DA</p></div>
@@ -569,19 +388,18 @@
         </div>
         <div class="menu-item">
             <div class="item-info"><p class="item-name">MOJITO FRUITS DE BOIS</p><div class="dots"></div><p class="item-price">400 DA</p></div>
-            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Fruits De Bois', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Fruits de Bois', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
         <div class="menu-item">
             <div class="item-info"><p class="item-name">MOJITO NATURE</p><div class="dots"></div><p class="item-price">400 DA</p></div>
             <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Nature', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <!-- CATEGORY: BOISSONS CHAUDES -->
+        <!-- BOISSONS CHAUDES -->
         <h2 class="category-title">Boissons Chaudes</h2>
-
         <div class="menu-item">
             <div class="item-info"><p class="item-name">CHOCOLAT CHAUD NUTELLA</p><div class="dots"></div><p class="item-price">350 DA</p></div>
-            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Chocolat Chaud Nutella', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Chocolat Nutella', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
         <div class="menu-item">
             <div class="item-info"><p class="item-name">CAPUCCINO NUTELLA</p><div class="dots"></div><p class="item-price">300 DA</p></div>
@@ -600,29 +418,27 @@
             <div class="action-buttons"><button class="add-btn" onclick="addToCart('Café Capsules', '100 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <!-- CATEGORY: JUS -->
+        <!-- JUS -->
         <h2 class="category-title">Jus</h2>
-
         <div class="menu-item">
             <div class="item-info"><p class="item-name">JUS DE BANANE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
-            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus De Banane', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Banane', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
         <div class="menu-item">
             <div class="item-info"><p class="item-name">JUS D'ANANAS</p><div class="dots"></div><p class="item-price">350 DA</p></div>
-            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus D Ananas', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Ananas', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
         <div class="menu-item">
             <div class="item-info"><p class="item-name">JUS DE CITRON</p><div class="dots"></div><p class="item-price">350 DA</p></div>
-            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus De Citron', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Citron', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
         <div class="menu-item">
             <div class="item-info"><p class="item-name">JUS D'ORANGE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
-            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus D Orange', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Orange', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
         </div>
 
-        <!-- CATEGORY: COCKTAIL -->
+        <!-- COCKTAIL -->
         <h2 class="category-title">Cocktail</h2>
-
         <div class="menu-item">
             <div class="item-info"><p class="item-name">COCKTAIL ÉTOILE ROSE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
             <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Etoile Rose', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
@@ -637,4 +453,27 @@
         </div>
         <div class="menu-item">
             <div class="item-info"><p class="item-name">COCKTAIL JARDIN D'ÉTÉ</p><div class="dots"></div><p class="item-price">400 DA</p></div>
-            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Jardin Ete', '400 DA')">+ Add</button><button class="cancel-btn
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Jardin Ete', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+
+        <!-- SMOOTHIES -->
+        <h2 class="category-title">Smoothies</h2>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CLASSIC</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Classic', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">HEALTHY</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Healthy', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">HAWAI</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Hawai', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">FRUITS DE BOIS</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Fruits de Bois', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+
+        <!-- LES BOISSONS -->
+        <h2 class="category-title">Les
