@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sweet Menu</title>
-    <!-- Importing cursive fonts to match your menu images -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -14,7 +13,7 @@
             margin: 0;
             background-color: #fff0f5; 
             color: #4a3b32;
-            padding-bottom: 120px; /* Space for the cart */
+            padding-bottom: 180px; /* Increased space so the cart doesn't hide items */
         }
 
         /* Header Styling */
@@ -151,7 +150,7 @@
             background-color: white;
             box-shadow: 0 -4px 15px rgba(255, 105, 180, 0.2);
             padding: 15px 20px;
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
             box-sizing: border-box;
             border-top: 3px solid #ff69b4;
@@ -169,6 +168,7 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
+            margin-bottom: 15px;
         }
 
         .cart-item {
@@ -196,6 +196,35 @@
             font-style: italic;
             font-size: 13px;
         }
+
+        /* --- NEW: THE ORDER BUTTON --- */
+        .order-btn {
+            width: 100%;
+            background-color: #ff1493;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 20, 147, 0.4);
+            transition: 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .order-btn:hover {
+            background-color: #c71585;
+            transform: translateY(-2px);
+        }
+
+        .order-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -207,7 +236,7 @@
     </div>
 
     <div class="menu-container">
-
+        <!-- (All your menu items are here, unchanged) -->
         <!-- LES CREPES -->
         <h2 class="category-title">Les Crêpes</h2>
         <div class="menu-item">
@@ -555,6 +584,9 @@
         <ul class="cart-list" id="cartList">
             <li class="empty-cart">Cart is empty. Tap "+ Add" to order.</li>
         </ul>
+        
+        <!-- NEW: THE ORDER BUTTON -->
+        <button class="order-btn" id="placeOrderBtn" onclick="placeOrder()" disabled>Place Order</button>
     </div>
 
     <!-- JAVASCRIPT FOR CART LOGIC -->
@@ -566,7 +598,6 @@
             updateCartDisplay();
         }
 
-        // This makes the "Cancel" button under the item remove the last added item
         function cancelLast() {
             if (order.length > 0) {
                 order.pop();
@@ -581,12 +612,18 @@
 
         function updateCartDisplay() {
             const cartList = document.getElementById('cartList');
+            const orderBtn = document.getElementById('placeOrderBtn');
             cartList.innerHTML = '';
 
+            // If cart is empty, disable the order button
             if (order.length === 0) {
                 cartList.innerHTML = '<li class="empty-cart">Cart is empty. Tap "+ Add" to order.</li>';
+                orderBtn.disabled = true;
                 return;
             }
+
+            // If cart has items, enable the order button
+            orderBtn.disabled = false;
 
             order.forEach((item, index) => {
                 const li = document.createElement('li');
@@ -597,6 +634,18 @@
                 `;
                 cartList.appendChild(li);
             });
+        }
+
+        // NEW: Function when they click "Place Order"
+        function placeOrder() {
+            if (order.length === 0) return;
+            
+            // Show a success message
+            alert("✅ Order Placed Successfully! \n\nYour order has been sent to the kitchen for Table 4.");
+            
+            // Clear the cart after ordering
+            order = [];
+            updateCartDisplay();
         }
     </script>
 
