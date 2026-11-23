@@ -3,146 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cafe</title>
+    <title>Order Menu</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-        }
-        
-        .menu-item {
-            margin-bottom: 20px;
+            background-color: #fafafa;
+            padding-bottom: 250px; /* Space for the cart at the bottom */
         }
 
-        /* Styles for the form */
-        form {
-            margin-top: 40px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            max-width: 400px;
-        }
-
-        input {
-            display: block;
-            margin-bottom: 15px;
-            padding: 8px;
-            width: 90%;
-        }
-
-        .button-group {
+        /* Container for the menu grid */
+        .menu-grid {
             display: flex;
-            gap: 10px;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
         }
 
-        button, .cancel-btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 16px;
+        /* Box for each item */
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 220px;
         }
 
-        button[type="submit"] {
+        /* Picture styling */
+        .menu-item img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Green Add Button */
+        .add-btn {
             background-color: #4CAF50;
             color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.2s;
         }
 
-        /* Styles for the Cancel button */
+        .add-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* --- SHOPPING CART STYLES --- */
+        .cart-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+            padding: 20px;
+            max-height: 200px;
+            overflow-y: auto; /* Scroll if cart gets too long */
+            box-sizing: border-box;
+        }
+
+        .cart-title {
+            margin-top: 0;
+            font-size: 18px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .cart-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Red Cancel Button in the Cart */
         .cancel-btn {
             background-color: #f44336;
             color: white;
-            text-align: center;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cancel-btn:hover {
+            background-color: #da190b;
+        }
+
+        .empty-cart {
+            color: #888;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
 
-    <h1>Our Menu</h1>
-
-    <!-- MENU SECTION -->
-    <div class="menu-item">
-        <h3>Cappuccino</h3>
-        <!-- FIXED: Added .PNG to match your files -->
-        <img src="cappuccino.jpg.PNG" alt="Cappuccino" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Cascada</h3>
-        <img src="cascada.jpg.PNG" alt="Cascada" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Cheesecake</h3>
-        <img src="cheesecake.jpg.PNG" alt="Cheesecake" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Cocktail</h3>
-        <!-- This one has lowercase .png based on your screenshot -->
-        <img src="cocktail.jpg.png" alt="Cocktail" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Crepe</h3>
-        <img src="crepe.jpg.PNG" alt="Crepe" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Dessert</h3>
-        <img src="dessert.jpg.PNG" alt="Dessert" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Gaufre</h3>
-        <img src="gaufre.jpg.PNG" alt="Gaufre" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Iced Coffee</h3>
-        <img src="iced.jpg.PNG" alt="Iced Coffee" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Jus</h3>
-        <img src="jus.jpg.PNG" alt="Jus" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Milkshake</h3>
-        <img src="milkshake.jpg.PNG" alt="Milkshake" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Mocktail</h3>
-        <img src="mocktail.jpg.PNG" alt="Mocktail" width="200">
-    </div>
-
-    <div class="menu-item">
-        <h3>Mojito</h3>
-        <img src="mojito.jpg.PNG" alt="Mojito" width="200">
-    </div>
-
-
-    <!-- ORDER FORM WITH CANCEL BUTTON -->
-    <h2>Place an Order</h2>
-    <form action="#" method="POST">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name">
-
-        <label for="order">What would you like?</label>
-        <input type="text" id="order" name="order" placeholder="e.g., Cappuccino and Cheesecake">
-
-        <div class="button-group">
-            <!-- Submit Button -->
-            <button type="submit">Submit Order</button>
-            
-            <!-- Cancel Button (It's a link that takes you back to the home page or clears the form) -->
-            <a href="/" class="cancel-btn">Cancel</a>
+    <div class="menu-grid">
+        <!-- Item 1 -->
+        <div class="menu-item">
+            <img src="cappuccino.jpg.PNG" alt="Cappuccino">
+            <button class="add-btn" onclick="addToCart('Cappuccino')">Add</button>
         </div>
-    </form>
+
+        <!-- Item 2 -->
+        <div class="menu-item">
+            <img src="cascada.jpg.PNG" alt="Cascada">
+            <button class="add-btn" onclick="addToCart('Cascada')">Add</button>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="menu-item">
+            <img src="cheesecake.jpg.PNG" alt="Cheesecake">
+            <button class="add-btn" onclick="addToCart('Cheesecake')">Add</button>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="menu-item">
+            <img src="cocktail.jpg.png" alt="Cocktail">
+            <button class="add-btn" onclick="addToCart('Cocktail')">Add</button>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="menu-item">
+            <img src="crepe.jpg.PNG" alt="Crepe">
+            <button class="add-btn" onclick="addToCart('Crepe')">Add</button>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="menu-item">
+            <img src="dessert.jpg.PNG" alt="Dessert">
+            <button class="add-btn" onclick="addToCart('Dessert')">Add</button>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="menu-item">
+            <img src="gaufre.jpg.PNG" alt="Gaufre">
+            <button class="add-btn" onclick="addToCart('Gaufre')">Add</button>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="menu-item">
+            <img src="iced.jpg.PNG" alt="Iced">
+            <button class="add-btn" onclick="addToCart('Iced')">Add</button>
+        </div>
+
+        <!-- Item 9 -->
+        <div class="menu-item">
+            <img src="jus.jpg.PNG" alt="Jus">
+            <button class="add-btn" onclick="addToCart('Jus')">Add</button>
+        </div>
+
+        <!-- Item 10 -->
+        <div class="menu-item">
+            <img src="milkshake.jpg.PNG" alt="Milkshake">
+            <button class="add-btn" onclick="addToCart('Milkshake')">Add</button>
+        </div>
+
+        <!-- Item 11 -->
+        <div class="menu-item">
+            <img src="mocktail.jpg.PNG" alt="Mocktail">
+            <button class="add-btn" onclick="addToCart('Mocktail')">Add</button>
+        </div>
+
+        <!-- Item 12 -->
+        <div class="menu-item">
+            <img src="mojito.jpg.PNG" alt="Mojito">
+            <button class="add-btn" onclick="addToCart('Mojito')">Add</button>
+        </div>
+    </div>
+
+    <!-- THE SHOPPING CART (Fixed at the bottom of the screen) -->
+    <div class="cart-container">
+        <h3 class="cart-title">Your Order:</h3>
+        <ul class="cart-list" id="cartList">
+            <li class="empty-cart">Cart is empty. Tap Add to order!</li>
+        </ul>
+    </div>
+
+    <!-- JAVASCRIPT FOR THE ORDERING LOGIC -->
+    <script>
+        // This array keeps track of what the user clicked
+        let order = [];
+
+        function addToCart(itemName) {
+            // 1. Add the item to the order list
+            order.push(itemName);
+            
+            // 2. Update the screen
+            updateCartDisplay();
+        }
+
+        function removeFromCart(index) {
+            // 1. Remove the specific item from the order list
+            order.splice(index, 1);
+            
+            // 2. Update the screen
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartList = document.getElementById('cartList');
+            
+            // Clear the current HTML inside the cart
+            cartList.innerHTML = '';
+
+            // If empty, show the empty message
+            if (order.length === 0) {
+                cartList.innerHTML = '<li class="empty-cart">Cart is empty. Tap Add to order!</li>';
+                return;
+            }
+
+            // If there are items, create a list item for each one
+            order.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = 'cart-item';
+                
+                // Create the text and the Cancel button
+                li.innerHTML = `
+                    <span>${item}</span>
+                    <button class="cancel-btn" onclick="removeFromCart(${index})">Cancel</button>
+                `;
+                
+                cartList.appendChild(li);
+            });
+        }
+    </script>
 
 </body>
 </html>
