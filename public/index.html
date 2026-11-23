@@ -3,112 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pink Menu</title>
+    <title>Marie Sweet Menu</title>
+    <!-- Importing cursive fonts to match your menu images -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* Pink Theme Colors */
+        /* Pink Watercolor Background Theme */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 20px;
-            background-color: #fff0f5; /* Very light pink background */
-            padding-bottom: 250px; /* Space for the cart at the bottom */
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #fff0f5; 
+            /* Adds a soft pink watercolor effect behind everything */
+            background-image: radial-gradient(circle at 50% 0%, #ffd1dc 0%, transparent 50%), 
+                              radial-gradient(circle at 10% 80%, #ffb6c1 0%, transparent 40%),
+                              radial-gradient(circle at 90% 90%, #ffc0cb 0%, transparent 40%);
+            background-attachment: fixed;
+            color: #4a3b32;
+            padding-bottom: 120px; /* Space for the cart */
         }
 
-        /* Container for the menu grid */
-        .menu-grid {
+        /* Header Styling */
+        .header {
+            text-align: center;
+            padding: 30px 20px 20px 20px;
+        }
+
+        .header h1 {
+            color: #ff1493;
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        .table-number {
+            background-color: #ff69b4;
+            color: white;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+        }
+
+        /* Cursive Category Titles to match the images */
+        .category-title {
+            font-family: 'Great Vibes', cursive;
+            color: #2c1e16;
+            font-size: 42px;
+            text-align: center;
+            margin: 40px 0 20px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Container for the menu items */
+        .menu-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Individual Menu Item Card */
+        .menu-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.3);
+            border: 1px solid #ffe4e1;
+        }
+
+        .item-info {
+            flex: 1;
+            padding-right: 15px;
+            /* Flex layout to put dots between name and price */
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+            align-items: baseline;
         }
 
-        /* Box for each item with a pink shadow */
-        .menu-item {
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Dotted line between item and price */
+        .dots {
+            flex: 1;
+            border-bottom: 2px dotted #ffb6c1;
+            margin: 0 10px;
+            position: relative;
+            bottom: 4px;
+        }
+
+        .item-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ff1493;
+            margin: 0;
+        }
+
+        /* Action Buttons Container */
+        .action-buttons {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 6px 12px rgba(255, 105, 180, 0.2); /* Pink shadow */
-            width: 220px;
-            border: 1px solid #ffb6c1;
+            gap: 8px;
         }
 
-        /* Picture styling */
-        .menu-item img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* Button Container */
-        .item-buttons {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-            justify-content: space-between;
-        }
-
-        /* Pink Add Button */
+        /* The "+ Add" Button */
         .add-btn {
-            background-color: #ff69b4; /* Hot Pink */
+            background-color: #ff69b4;
             color: white;
-            padding: 10px;
             border: none;
-            border-radius: 6px;
-            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: bold;
-            width: 48%;
+            cursor: pointer;
             transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(255, 105, 180, 0.4);
         }
 
         .add-btn:hover {
-            background-color: #ff1493; /* Deeper Pink */
+            background-color: #ff1493;
         }
 
-        /* Light Pink Cancel Button */
+        /* The "Cancel" Button under items */
         .cancel-btn {
-            background-color: #ffb6c1; /* Light Pink */
-            color: #333;
-            padding: 10px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
+            background-color: #ffe4e1;
+            color: #ff1493;
+            border: 1px solid #ffb6c1;
+            padding: 8px 12px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: bold;
-            width: 48%;
+            cursor: pointer;
             transition: 0.2s;
         }
 
         .cancel-btn:hover {
-            background-color: #ff69b4;
+            background-color: #ffb6c1;
             color: white;
         }
 
-        /* --- SHOPPING CART STYLES (Pink Theme) --- */
+        /* --- SHOPPING CART --- */
         .cart-container {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background-color: white;
-            box-shadow: 0 -4px 15px rgba(255, 105, 180, 0.3); /* Pink shadow */
-            padding: 20px;
-            max-height: 200px;
+            box-shadow: 0 -4px 20px rgba(255, 105, 180, 0.3);
+            padding: 15px 20px;
+            max-height: 250px;
             overflow-y: auto;
             box-sizing: border-box;
-            border-top: 3px solid #ff69b4;
+            border-top: 4px solid #ff69b4;
+            z-index: 1000;
         }
 
         .cart-title {
-            margin-top: 0;
-            font-size: 18px;
+            margin: 0 0 10px 0;
+            font-size: 20px;
             color: #ff1493;
-            border-bottom: 2px solid #ffb6c1;
-            padding-bottom: 10px;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
         }
 
         .cart-list {
@@ -123,200 +187,454 @@
             align-items: center;
             padding: 8px 0;
             border-bottom: 1px solid #ffe4e1;
+            font-size: 15px;
         }
 
-        /* Cancel Button inside the Cart */
-        .cart-cancel-btn {
-            background-color: #ffb6c1;
-            color: #333;
+        .remove-btn {
+            background-color: #ffcccc;
+            color: #cc0000;
             border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
+            padding: 5px 10px;
+            border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-        }
-
-        .cart-cancel-btn:hover {
-            background-color: #ff69b4;
-            color: white;
         }
 
         .empty-cart {
             color: #ff69b4;
             font-style: italic;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <div class="menu-grid">
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Sweet Menu</h1>
+        <div class="table-number">Table 4</div>
+    </div>
+
+    <div class="menu-container">
+
+        <!-- CATEGORY: LES CREPES -->
+        <h2 class="category-title">Les Crêpes</h2>
         
-        <!-- Item 1 -->
         <div class="menu-item">
-            <img src="cappuccino.jpg.PNG" alt="Cappuccino">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Cappuccino')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">CRÊPE SIMPLE</p>
+                <div class="dots"></div>
+                <p class="item-price">250 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Crêpe Simple', '250 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 2 -->
         <div class="menu-item">
-            <img src="cascada.jpg.PNG" alt="Cascada">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Cascada')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">CRÊPE FRUITS AU CHOIX</p>
+                <div class="dots"></div>
+                <p class="item-price">350 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Crêpe Fruits Au Choix', '350 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 3 -->
         <div class="menu-item">
-            <img src="cheesecake.jpg.PNG" alt="Cheesecake">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Cheesecake')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">CRÊPE ROULÉ FRUITS AU CHOIX</p>
+                <div class="dots"></div>
+                <p class="item-price">350 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Crêpe Roulé Fruits', '350 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 4 -->
         <div class="menu-item">
-            <img src="cocktail.jpg.png" alt="Cocktail">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Cocktail')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">CRÊPE SPAGHETTI</p>
+                <div class="dots"></div>
+                <p class="item-price">400 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Crêpe Spaghetti', '400 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 5 -->
         <div class="menu-item">
-            <img src="crepe.jpg.PNG" alt="Crepe">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Crepe')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">CRÊPE MIX FRUITS</p>
+                <div class="dots"></div>
+                <p class="item-price">450 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Crêpe Mix Fruits', '450 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 6 -->
         <div class="menu-item">
-            <img src="dessert.jpg.PNG" alt="Dessert">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Dessert')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">CRÊPE DUBAI</p>
+                <div class="dots"></div>
+                <p class="item-price">600 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Crêpe Dubai', '600 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 7 -->
         <div class="menu-item">
-            <img src="gaufre.jpg.PNG" alt="Gaufre">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Gaufre')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">CRÊPE MARIE</p>
+                <div class="dots"></div>
+                <p class="item-price">600 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Crêpe Marie', '600 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 8 -->
+        <!-- CATEGORY: LES PANCAKES -->
+        <h2 class="category-title">Les Pancakes</h2>
+
         <div class="menu-item">
-            <img src="iced.jpg.PNG" alt="Iced">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Iced')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">PANCAKE SIMPLE</p>
+                <div class="dots"></div>
+                <p class="item-price">250 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Pancake Simple', '250 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 9 -->
         <div class="menu-item">
-            <img src="jus.jpg.PNG" alt="Jus">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Jus')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">PANCAKE FRUITS AU CHOIX</p>
+                <div class="dots"></div>
+                <p class="item-price">350 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Pancake Fruits Au Choix', '350 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 10 -->
         <div class="menu-item">
-            <img src="milkshake.jpg.PNG" alt="Milkshake">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Milkshake')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">PANCAKE MIX FRUITS</p>
+                <div class="dots"></div>
+                <p class="item-price">450 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Pancake Mix Fruits', '450 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 11 -->
         <div class="menu-item">
-            <img src="mocktail.jpg.PNG" alt="Mocktail">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Mocktail')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">PANCAKE MARIE</p>
+                <div class="dots"></div>
+                <p class="item-price">600 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Pancake Marie', '600 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-        <!-- Item 12 -->
+        <!-- CATEGORY: LES GAUFRES -->
+        <h2 class="category-title">Les Gaufres</h2>
+
         <div class="menu-item">
-            <img src="mojito.jpg.PNG" alt="Mojito">
-            <div class="item-buttons">
-                <button class="add-btn" onclick="addToCart('Mojito')">Add</button>
-                <button class="cancel-btn" onclick="cancelItem()">Cancel</button>
+            <div class="item-info">
+                <p class="item-name">GAUFRE SIMPLE</p>
+                <div class="dots"></div>
+                <p class="item-price">250 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Gaufre Simple', '250 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
             </div>
         </div>
 
-    </div>
+        <div class="menu-item">
+            <div class="item-info">
+                <p class="item-name">GAUFRE FRUITS AU CHOIX</p>
+                <div class="dots"></div>
+                <p class="item-price">350 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Gaufre Fruits Au Choix', '350 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
+            </div>
+        </div>
 
-    <!-- THE SHOPPING CART (Fixed at the bottom of the screen) -->
-    <div class="cart-container">
-        <h3 class="cart-title">Your Order:</h3>
-        <ul class="cart-list" id="cartList">
-            <li class="empty-cart">Cart is empty. Tap Add to order!</li>
-        </ul>
-    </div>
+        <div class="menu-item">
+            <div class="item-info">
+                <p class="item-name">GAUFRE MIX FRUITS</p>
+                <div class="dots"></div>
+                <p class="item-price">450 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Gaufre Mix Fruits', '450 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
+            </div>
+        </div>
 
-    <!-- JAVASCRIPT FOR THE ORDERING LOGIC -->
-    <script>
-        let order = [];
+        <div class="menu-item">
+            <div class="item-info">
+                <p class="item-name">GAUFRE MARIE</p>
+                <div class="dots"></div>
+                <p class="item-price">600 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Gaufre Marie', '600 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
+            </div>
+        </div>
 
-        // This function handles the green "Add" button
-        function addToCart(itemName) {
-            order.push(itemName);
-            updateCartDisplay();
-        }
+        <!-- CATEGORY: DESSERTS -->
+        <h2 class="category-title">Dessert</h2>
 
-        // This function handles the red "Cancel" button under the menu item
-        function cancelItem() {
-            if (order.length > 0) {
-                // Removes the last item added to the cart
-                order.pop();
-                updateCartDisplay();
-            }
-        }
+        <div class="menu-item">
+            <div class="item-info">
+                <p class="item-name">SALAD FRUITS</p>
+                <div class="dots"></div>
+                <p class="item-price">400 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Salad Fruits', '400 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
+            </div>
+        </div>
 
-        // This function handles the "Cancel" button inside the cart list
-        function removeFromCart(index) {
-            order.splice(index, 1);
-            updateCartDisplay();
-        }
+        <div class="menu-item">
+            <div class="item-info">
+                <p class="item-name">BATEAU FRUITS</p>
+                <div class="dots"></div>
+                <p class="item-price">600 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Bateau Fruits', '600 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
+            </div>
+        </div>
 
-        function updateCartDisplay() {
-            const cartList = document.getElementById('cartList');
-            cartList.innerHTML = '';
+        <div class="menu-item">
+            <div class="item-info">
+                <p class="item-name">BATEAU FRUITS MAXI</p>
+                <div class="dots"></div>
+                <p class="item-price">700 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Bateau Fruits Maxi', '700 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
+            </div>
+        </div>
 
-            if (order.length === 0) {
-                cartList.innerHTML = '<li class="empty-cart">Cart is empty. Tap Add to order!</li>';
-                return;
-            }
+        <!-- CATEGORY: SNACKS -->
+        <h2 class="category-title">Snacks</h2>
 
-            order.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.className = 'cart-item';
-                
-                // Pink cancel button for the cart
-                li.innerHTML = `
-                    <span>${item}</span>
-                    <button class="cart-cancel-btn" onclick="removeFromCart(${index})">Cancel</button>
-                `;
-                
-                cartList.appendChild(li);
-            });
-        }
-    </script>
+        <div class="menu-item">
+            <div class="item-info">
+                <p class="item-name">SNACK YUMMY</p>
+                <div class="dots"></div>
+                <p class="item-price">450 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Snack Yummy', '450 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
+            </div>
+        </div>
 
-</body>
-</html>
+        <div class="menu-item">
+            <div class="item-info">
+                <p class="item-name">SNACK BAKIRUKO</p>
+                <div class="dots"></div>
+                <p class="item-price">550 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Snack Bakiruko', '550 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <p class="item-name">SNACK SUGAR RUSH</p>
+                <div class="dots"></div>
+                <p class="item-price">700 DA</p>
+            </div>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="addToCart('Snack Sugar Rush', '700 DA')">+ Add</button>
+                <button class="cancel-btn" onclick="cancelLast()">Cancel</button>
+            </div>
+        </div>
+
+        <!-- CATEGORY: MOCKTAILS -->
+        <h2 class="category-title">Mocktails</h2>
+
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">PINA COLADA</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pina Colada', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">FLORIDA</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Florida', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">BORA BORA</p><div class="dots"></div><p class="item-price">450 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bora Bora', '450 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">BLEU CURAÇAO</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bleu Curaçao', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+
+        <!-- CATEGORY: MILKSHAKE -->
+        <h2 class="category-title">Milkshake</h2>
+
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MILKSHAKE BANANE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Banane', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MILKSHAKE FRAISE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Fraise', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MILKSHAKE NUTELLA</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Nutella', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MILKSHAKE OREO</p><div class="dots"></div><p class="item-price">450 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Oreo', '450 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MILKSHAKE KINDER BUENO</p><div class="dots"></div><p class="item-price">450 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Kinder Bueno', '450 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+
+        <!-- CATEGORY: ICED DRINKS -->
+        <h2 class="category-title">Iced Drinks</h2>
+
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">ICED STRAWBERRY</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Strawberry', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">ICED COFFEE</p><div class="dots"></div><p class="item-price">300 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Coffee', '300 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">ICED TEA</p><div class="dots"></div><p class="item-price">300 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Tea', '300 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">PINK LADY</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pink Lady', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+
+        <!-- CATEGORY: MOJITO -->
+        <h2 class="category-title">Mojito</h2>
+
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MOJITO CLASSIQUE SIMPLE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Classique Simple', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MOJITO CLASSIQUE (GAZEUSE)</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Classique Gazeuse', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MOJITO BLEU</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Bleu', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MOJITO PECHE</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Peche', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MOJITO FRUITS DE BOIS</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Fruits De Bois', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">MOJITO NATURE</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Nature', '400 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+
+        <!-- CATEGORY: BOISSONS CHAUDES -->
+        <h2 class="category-title">Boissons Chaudes</h2>
+
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CHOCOLAT CHAUD NUTELLA</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Chocolat Chaud Nutella', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CAPUCCINO NUTELLA</p><div class="dots"></div><p class="item-price">300 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Capuccino Nutella', '300 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CAPUCCINO MARIE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Capuccino Marie', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CAFÉ CRÈME</p><div class="dots"></div><p class="item-price">200 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Café Crème', '200 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">CAFÉ CAPSULES</p><div class="dots"></div><p class="item-price">100 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Café Capsules', '100 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+
+        <!-- CATEGORY: JUS -->
+        <h2 class="category-title">Jus</h2>
+
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">JUS DE BANANE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus De Banane', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">JUS D'ANANAS</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus D Ananas', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">JUS DE CITRON</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus De Citron', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">JUS D'ORANGE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus D Orange', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+
+        <!-- CATEGORY: COCKTAIL -->
+        <h2 class="category-title">Cocktail</h2>
+
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">COCKTAIL ÉTOILE ROSE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Etoile Rose', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">COCKTAIL NATURE</p><div class="dots"></div><p class="item-price">350 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Nature', '350 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">COCKTAIL BRASILIA</p><div class="dots"></div><p class="item-price">450 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Brasilia', '450 DA')">+ Add</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+        </div>
+        <div class="menu-item">
+            <div class="item-info"><p class="item-name">COCKTAIL JARDIN D'ÉTÉ</p><div class="dots"></div><p class="item-price">400 DA</p></div>
+            <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Jardin Ete', '400 DA')">+ Add</button><button class="cancel-btn
