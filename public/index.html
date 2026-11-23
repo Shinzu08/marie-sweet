@@ -13,7 +13,7 @@
             margin: 0;
             background-color: #fff0f5; 
             color: #4a3b32;
-            padding-bottom: 180px; /* Space for the cart */
+            padding-bottom: 200px; /* Space for the cart */
         }
 
         /* Header Styling */
@@ -43,24 +43,21 @@
             box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
         }
 
-        /* --- NEW: CATEGORY TABS --- */
+        /* --- CATEGORY TABS --- */
         .category-tabs {
             display: flex;
-            overflow-x: auto; /* Allows scrolling sideways if tabs are too many */
+            overflow-x: auto; 
             white-space: nowrap;
             padding: 10px 15px;
             gap: 10px;
             margin-bottom: 15px;
-            /* Hides the scrollbar for a cleaner look */
             -ms-overflow-style: none;  
             scrollbar-width: none;  
         }
-        .category-tabs::-webkit-scrollbar {
-            display: none;
-        }
+        .category-tabs::-webkit-scrollbar { display: none; }
 
         .tab-btn {
-            background-color: #f8bbd0; /* Light pink */
+            background-color: #f8bbd0; 
             color: #880e4f;
             border: none;
             padding: 10px 20px;
@@ -72,18 +69,16 @@
         }
 
         .tab-btn.active {
-            background-color: #d81b60; /* Dark pink */
+            background-color: #d81b60; 
             color: white;
         }
 
-        /* Container for the menu items */
         .menu-container {
             max-width: 600px;
             margin: 0 auto;
             padding: 0 15px;
         }
 
-        /* Category Sections (Hidden by default, toggled by JS) */
         .category-section {
             display: none; 
             animation: fadeIn 0.3s ease-in-out;
@@ -98,23 +93,32 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Individual Menu Item Card (Styled like your screenshot) */
+        /* Individual Menu Item Card */
         .menu-item {
             background-color: #ffffff;
             border-radius: 12px;
-            padding: 20px 15px;
+            padding: 12px;
             margin-bottom: 12px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
-            gap: 10px;
+            gap: 15px;
+        }
+
+        /* NEW: Image Styling */
+        .item-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
         }
 
         .item-info {
             display: flex;
             flex-direction: column;
             gap: 5px;
+            flex-grow: 1;
         }
 
         .item-name {
@@ -131,13 +135,11 @@
             margin: 0;
         }
 
-        /* Action Buttons Container */
         .action-buttons {
             display: flex;
             gap: 8px;
         }
 
-        /* The "+ Add" Button (Round like your screenshot) */
         .add-btn {
             background-color: #d81b60;
             color: white;
@@ -154,11 +156,8 @@
             transition: 0.2s;
         }
 
-        .add-btn:hover {
-            background-color: #ad1457;
-        }
+        .add-btn:hover { background-color: #ad1457; }
 
-        /* The "Cancel" Button */
         .cancel-btn {
             background-color: #fce4ec;
             color: #d81b60;
@@ -172,9 +171,7 @@
             transition: 0.2s;
         }
 
-        .cancel-btn:hover {
-            background-color: #f8bbd0;
-        }
+        .cancel-btn:hover { background-color: #f8bbd0; }
 
         /* --- SHOPPING CART --- */
         .cart-container {
@@ -247,14 +244,8 @@
             letter-spacing: 1px;
         }
 
-        .order-btn:hover {
-            background-color: #ad1457;
-        }
-
-        .order-btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
+        .order-btn:hover { background-color: #ad1457; }
+        .order-btn:disabled { background-color: #ccc; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -265,7 +256,7 @@
         <div class="table-number">Table vip</div>
     </div>
 
-    <!-- NEW: SCROLLABLE TABS -->
+    <!-- SCROLLABLE TABS -->
     <div class="category-tabs">
         <button class="tab-btn active" onclick="openCategory('crepes', this)">Les Crêpes</button>
         <button class="tab-btn" onclick="openCategory('pancakes', this)">Les Pancakes</button>
@@ -291,280 +282,337 @@
         <!-- LES CREPES -->
         <div id="crepes" class="category-section active">
             <div class="menu-item">
+                <img src="crepe.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Crêpe Simple</p><p class="item-price">250 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Simple', '250 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Simple', 250)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="crepe.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Crêpe Fruits Au Choix</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Fruits', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Fruits', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="crepe.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Crêpe Roulé Fruits Au Choix</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Roulé', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Roulé', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="crepe.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Crêpe Spaghetti</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Spaghetti', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Spaghetti', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="crepe.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Crêpe Mix Fruits</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Mix Fruits', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Mix Fruits', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="crepe.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Crêpe Dubai</p><p class="item-price">600 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Dubai', '600 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Dubai', 600)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="crepe.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Crêpe Marie</p><p class="item-price">600 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Marie', '600 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Crêpe Marie', 600)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- LES PANCAKES -->
         <div id="pancakes" class="category-section">
             <div class="menu-item">
+                <img src="pancake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Pancake Simple</p><p class="item-price">250 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Simple', '250 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Simple', 250)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="pancake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Pancake Fruits Au Choix</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Fruits', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Fruits', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="pancake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Pancake Mix Fruits</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Mix Fruits', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Mix Fruits', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="pancake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Pancake Marie</p><p class="item-price">600 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Marie', '600 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pancake Marie', 600)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- LES GAUFRES -->
         <div id="gaufres" class="category-section">
             <div class="menu-item">
+                <img src="gaufre.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Gaufre Simple</p><p class="item-price">250 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Simple', '250 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Simple', 250)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="gaufre.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Gaufre Fruits Au Choix</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Fruits', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Fruits', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="gaufre.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Gaufre Mix Fruits</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Mix Fruits', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Mix Fruits', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="gaufre.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Gaufre Marie</p><p class="item-price">600 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Marie', '600 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Gaufre Marie', 600)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- DESSERT -->
         <div id="dessert" class="category-section">
             <div class="menu-item">
+                <img src="dessert.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Salad Fruits</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Salad Fruits', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Salad Fruits', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="dessert.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Bateau Fruits</p><p class="item-price">600 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bateau Fruits', '600 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bateau Fruits', 600)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="dessert.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Bateau Fruits Maxi</p><p class="item-price">700 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bateau Fruits Maxi', '700 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bateau Fruits Maxi', 700)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- SNACKS -->
         <div id="snacks" class="category-section">
             <div class="menu-item">
+                <img src="snack.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Snack Yummy</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Snack Yummy', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Snack Yummy', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="snack.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Snack Bakiruko</p><p class="item-price">550 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Snack Bakiruko', '550 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Snack Bakiruko', 550)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="snack.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Snack Sugar Rush</p><p class="item-price">700 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Snack Sugar Rush', '700 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Snack Sugar Rush', 700)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- MOCKTAILS -->
         <div id="mocktails" class="category-section">
             <div class="menu-item">
+                <img src="mocktail.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Pina Colada</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pina Colada', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pina Colada', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="mocktail.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Florida</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Florida', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Florida', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="mocktail.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Bora Bora</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bora Bora', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bora Bora', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="mocktail.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Bleu Curaçao</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bleu Curaçao', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Bleu Curaçao', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- MILKSHAKE -->
         <div id="milkshake" class="category-section">
             <div class="menu-item">
+                <img src="milkshake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Milkshake Banane</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Banane', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Banane', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="milkshake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Milkshake Fraise</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Fraise', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Fraise', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="milkshake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Milkshake Nutella</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Nutella', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Nutella', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="milkshake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Milkshake Oreo</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Oreo', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Oreo', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="milkshake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Milkshake Kinder Bueno</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Kinder Bueno', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Milkshake Kinder Bueno', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- ICED DRINKS -->
         <div id="iced" class="category-section">
             <div class="menu-item">
+                <img src="iced.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Iced Strawberry</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Strawberry', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Strawberry', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="iced.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Iced Coffee</p><p class="item-price">300 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Coffee', '300 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Coffee', 300)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="iced.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Iced Tea</p><p class="item-price">300 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Tea', '300 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Iced Tea', 300)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="iced.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Pink Lady</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pink Lady', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Pink Lady', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- MOJITO -->
         <div id="mojito" class="category-section">
             <div class="menu-item">
+                <img src="mojito.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Mojito Classique Simple</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Simple', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Simple', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="mojito.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Mojito Classique (Gazeuse)</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Gazeuse', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Gazeuse', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="mojito.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Mojito Bleu</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Bleu', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Bleu', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="mojito.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Mojito Peche</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Peche', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Peche', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="mojito.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Mojito Fruits De Bois</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Fruits de Bois', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Fruits de Bois', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="mojito.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Mojito Nature</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Nature', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Mojito Nature', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- BOISSONS CHAUDES -->
         <div id="chaudes" class="category-section">
             <div class="menu-item">
+                <img src="cappuccino.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Chocolat Chaud Nutella</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Chocolat Nutella', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Chocolat Nutella', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cappuccino.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Capuccino Nutella</p><p class="item-price">300 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Capuccino Nutella', '300 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Capuccino Nutella', 300)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cappuccino.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Capuccino Marie</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Capuccino Marie', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Capuccino Marie', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cappuccino.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Café Crème</p><p class="item-price">200 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Café Crème', '200 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Café Crème', 200)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cappuccino.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Café Capsules</p><p class="item-price">100 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Café Capsules', '100 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Café Capsules', 100)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- JUS -->
         <div id="jus" class="category-section">
             <div class="menu-item">
+                <img src="jus.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Jus De Banane</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Banane', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Banane', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="jus.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Jus D'Ananas</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Ananas', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Ananas', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="jus.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Jus De Citron</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Citron', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Citron', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="jus.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Jus D'Orange</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Orange', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Jus Orange', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- COCKTAIL -->
         <div id="cocktail" class="category-section">
             <div class="menu-item">
+                <img src="cocktail.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cocktail Étoile Rose</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Etoile Rose', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Etoile Rose', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cocktail.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cocktail Nature</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Nature', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Nature', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cocktail.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cocktail Brasilia</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Brasilia', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Brasilia', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cocktail.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cocktail Jardin D'Été</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Jardin Ete', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cocktail Jardin Ete', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- SMOOTHIES -->
         <div id="smoothies" class="category-section">
             <div class="menu-item">
+                <img src="jus.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Classic</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Classic', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Classic', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="jus.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Healthy</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Healthy', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Healthy', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="jus.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Hawai</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Hawai', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Hawai', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="jus.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Fruits De Bois</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Fruits de Bois', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Smoothie Fruits de Bois', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
@@ -572,75 +620,87 @@
         <div id="boissons" class="category-section">
             <div class="menu-item">
                 <div class="item-info"><p class="item-name">Canettes De Coca-Cola</p><p class="item-price">150 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Coca-Cola', '150 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Coca-Cola', 150)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
                 <div class="item-info"><p class="item-name">L'Eau Petite Bouteille</p><p class="item-price">30 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Eau Petite', '30 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Eau Petite', 30)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
                 <div class="item-info"><p class="item-name">L'Eau Grande Bouteille</p><p class="item-price">50 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Eau Grande', '50 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Eau Grande', 50)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- CHESECAKE -->
         <div id="cheesecake" class="category-section">
             <div class="menu-item">
+                <img src="cheesecake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cheesecake Nutella</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cheesecake Nutella', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cheesecake Nutella', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cheesecake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cheesecake Lotus</p><p class="item-price">500 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cheesecake Lotus', '500 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cheesecake Lotus', 500)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cheesecake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cheesecake Fruits De Bois</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cheesecake Fruits de Bois', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cheesecake Fruits de Bois', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cheesecake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cheesecake Bueno</p><p class="item-price">500 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cheesecake Bueno', '500 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cheesecake Bueno', 500)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cheesecake.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cake Dubai</p><p class="item-price">700 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cake Dubai', '700 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cake Dubai', 700)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- TIRAMISSU -->
         <div id="tiramissu" class="category-section">
             <div class="menu-item">
+                <img src="tiramisu.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Tiramissu Classique</p><p class="item-price">350 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Tiramissu Classique', '350 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Tiramissu Classique', 350)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="tiramisu.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Tiramissu Nutella</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Tiramissu Nutella', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Tiramissu Nutella', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="tiramisu.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Tiramissu Marie</p><p class="item-price">500 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Tiramissu Marie', '500 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Tiramissu Marie', 500)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
         <!-- CASCADA -->
         <div id="cascada" class="category-section">
             <div class="menu-item">
+                <img src="cascada.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cascada Simple</p><p class="item-price">400 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cascada Simple', '400 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cascada Simple', 400)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cascada.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cascada Royale</p><p class="item-price">450 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cascada Royale', '450 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cascada Royale', 450)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cascada.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cascada Dubai</p><p class="item-price">550 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cascada Dubai', '550 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cascada Dubai', 550)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
             <div class="menu-item">
+                <img src="cascada.jpg" class="item-img" onerror="this.style.display='none'">
                 <div class="item-info"><p class="item-name">Cascada Marie</p><p class="item-price">700 DA</p></div>
-                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cascada Marie', '700 DA')">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
+                <div class="action-buttons"><button class="add-btn" onclick="addToCart('Cascada Marie', 700)">+</button><button class="cancel-btn" onclick="cancelLast()">Cancel</button></div>
             </div>
         </div>
 
@@ -658,17 +718,19 @@
 
     <!-- JAVASCRIPT -->
     <script>
+        // Automatically get the table number from URL (e.g., ?table=5)
+        const params = new URLSearchParams(location.search);
+        const TABLE = params.get('table') || '1';
+        document.querySelector('.table-number').textContent = `Table ${TABLE}`;
+
         // --- TABS LOGIC ---
         function openCategory(categoryId, btnElement) {
-            // 1. Hide all categories
             const sections = document.querySelectorAll('.category-section');
             sections.forEach(sec => sec.classList.remove('active'));
 
-            // 2. Remove 'active' color from all tabs
             const tabs = document.querySelectorAll('.tab-btn');
             tabs.forEach(tab => tab.classList.remove('active'));
 
-            // 3. Show the clicked category and highlight the clicked tab
             document.getElementById(categoryId).classList.add('active');
             btnElement.classList.add('active');
         }
@@ -710,20 +772,57 @@
                 const li = document.createElement('li');
                 li.className = 'cart-item';
                 li.innerHTML = `
-                    <span><strong>${item.name}</strong> - ${item.price}</span>
+                    <span><strong>${item.name}</strong> - ${item.price} DA</span>
                     <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
                 `;
                 cartList.appendChild(li);
             });
         }
 
-        function placeOrder() {
+        // --- SEND TO TELEGRAM ---
+        async function placeOrder() {
             if (order.length === 0) return;
-            alert("✅ Order Placed Successfully! \n\nYour order has been sent to the kitchen for Table VIP.");
-            order = [];
-            updateCartDisplay();
+            
+            const btn = document.getElementById('placeOrderBtn');
+            btn.textContent = "Sending...";
+            btn.disabled = true;
+
+            // Calculate total
+            let total = 0;
+            let itemsString = "";
+            
+            order.forEach(item => {
+                total += item.price;
+                itemsString += `• 1x ${item.name} — ${item.price} DA\n`;
+            });
+
+            const message = `☕ NEW ORDER — Table ${TABLE}\n\n${itemsString}\n💰 TOTAL: ${total} DA`;
+
+            // Send to backend
+            try {
+                const res = await fetch('/order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        table: TABLE, 
+                        items: order,
+                        total: total
+                    })
+                });
+                
+                if (!res.ok) throw new Error();
+
+                alert(`✅ Order Placed Successfully!\n\nYour order has been sent to the kitchen for Table ${TABLE}.`);
+                order = [];
+                updateCartDisplay();
+                
+            } catch {
+                alert('❌ Could not send order. Please call the waiter.');
+            } finally {
+                btn.textContent = "Place Order";
+                btn.disabled = false;
+            }
         }
     </script>
-
 </body>
 </html>
