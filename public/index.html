@@ -13,10 +13,9 @@
             margin: 0;
             background-color: #fff0f5; 
             color: #4a3b32;
-            padding-bottom: 200px; /* Space for the cart */
+            padding-bottom: 200px; 
         }
 
-        /* Header Styling */
         .header {
             text-align: center;
             padding: 20px 20px 10px 20px;
@@ -43,7 +42,7 @@
             box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
         }
 
-        /* --- CATEGORY TABS --- */
+        /* Category Tabs */
         .category-tabs {
             display: flex;
             overflow-x: auto; 
@@ -93,7 +92,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Individual Menu Item Card */
+        /* Menu Item Card */
         .menu-item {
             background-color: #ffffff;
             border-radius: 12px;
@@ -102,7 +101,7 @@
             display: flex;
             align-items: center;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
-            gap: 15px;
+            gap: 15px; /* Space between image and text */
         }
 
         /* NEW: Image Styling */
@@ -718,24 +717,22 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Automatically get the table number from URL (e.g., ?table=5)
+        // Get Table Number
         const params = new URLSearchParams(location.search);
         const TABLE = params.get('table') || '1';
         document.querySelector('.table-number').textContent = `Table ${TABLE}`;
 
-        // --- TABS LOGIC ---
+        // Tabs Logic
         function openCategory(categoryId, btnElement) {
             const sections = document.querySelectorAll('.category-section');
             sections.forEach(sec => sec.classList.remove('active'));
-
             const tabs = document.querySelectorAll('.tab-btn');
             tabs.forEach(tab => tab.classList.remove('active'));
-
             document.getElementById(categoryId).classList.add('active');
             btnElement.classList.add('active');
         }
 
-        // --- CART LOGIC ---
+        // Cart Logic
         let order = [];
 
         function addToCart(itemName, itemPrice) {
@@ -779,7 +776,7 @@
             });
         }
 
-        // --- SEND TO TELEGRAM ---
+        // Send to Telegram
         async function placeOrder() {
             if (order.length === 0) return;
             
@@ -787,35 +784,20 @@
             btn.textContent = "Sending...";
             btn.disabled = true;
 
-            // Calculate total
             let total = 0;
-            let itemsString = "";
-            
-            order.forEach(item => {
-                total += item.price;
-                itemsString += `• 1x ${item.name} — ${item.price} DA\n`;
-            });
+            order.forEach(item => { total += item.price; });
 
-            const message = `☕ NEW ORDER — Table ${TABLE}\n\n${itemsString}\n💰 TOTAL: ${total} DA`;
-
-            // Send to backend
             try {
                 const res = await fetch('/order', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        table: TABLE, 
-                        items: order,
-                        total: total
-                    })
+                    body: JSON.stringify({ table: TABLE, items: order, total: total })
                 });
                 
                 if (!res.ok) throw new Error();
-
                 alert(`✅ Order Placed Successfully!\n\nYour order has been sent to the kitchen for Table ${TABLE}.`);
                 order = [];
                 updateCartDisplay();
-                
             } catch {
                 alert('❌ Could not send order. Please call the waiter.');
             } finally {
